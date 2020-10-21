@@ -9,7 +9,7 @@
 				 :placeholder-style="input_style" />
 			</view>
 			<view class=" u-flex u-row-between  u-m-t-20 ">
-				<navigator class="link " url="">忘记密码</navigator>
+				<navigator class="link " url="../fgtPassword/fgtPassword">忘记密码</navigator>
 				<navigator class="link " url="../switchIdentity/switchIdentity">去注册</navigator>
 			</view>
 			<u-button @click="login" :custom-style="customStyle" shape="circle">登录</u-button>

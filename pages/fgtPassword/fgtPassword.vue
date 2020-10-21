@@ -3,21 +3,22 @@
 		<view class="fgt-group">
 			<view class="u-border-bottom">
 				<input class="fgt-input u-m-t-50 u-p-b-20" type="number" v-model="phone" placeholder="请输入手机号" :placeholder-style="input_style" />
+				<u-button v-show="isShow" @click="getCode" :custom-style="customStyle_GetCode">获取验证码</u-button>
+				<u-button v-show="!isShow" disabled="true" :custom-style="customStyle_GetCode">还有{{timer}}秒</u-button>
 			</view>
-			<u-button v-show="isShow" @click="getCode" :custom-style="customStyle">获取验证码</u-button>
-			<u-button v-show="!isShow" disabled="true" :custom-style="customStyle">还有{{timer}}秒</u-button>
-			<view>
+			
+			<!-- <u-button v-show="isShow" @click="getCode" :custom-style="customStyle_GetCode">获取验证码</u-button>
+			<u-button v-show="!isShow" disabled="true" :custom-style="customStyle_GetCode">还有{{timer}}秒</u-button> -->
+			<view class="u-border-bottom">
 				<input class="fgt-input u-m-t-50 u-p-b-20" type="number" v-model="code" placeholder="请输入验证码" :placeholder-style="input_style" />
 			</view>
-			<view>
-				<input class="fgt-input u-m-t-50 u-p-b-20" type="password" v-model="password" placeholder="请输入新密码"
-				 :placeholder-style="input_style" />
+			<view class="u-border-bottom">
+				<input class="fgt-input u-m-t-50 u-p-b-20" type="password" v-model="password" placeholder="请输入新密码":placeholder-style="input_style" />
 			</view>
-			<view>
-				<input class="fgt-input u-m-t-50 u-p-b-20" type="repassword" v-model="repassword" placeholder="请确认新密码"
-				 :placeholder-style="input_style" />
+			<view class="u-border-bottom">
+				<input class="fgt-input u-m-t-50 u-p-b-20" type="repassword" v-model="repassword" placeholder="请确认新密码":placeholder-style="input_style" />
 			</view>
-				<u-button  @click="changeps" :custom-style="customStyle">提交</u-button>
+			<u-button @click="changeps" :custom-style="customStyle_Push" shape="circle">提交</u-button>
 		</view>
 		<u-toast ref="uToast" />
 	</view>
@@ -29,7 +30,29 @@
 			return {
 				phone: '',
 				timer: 60,
-				isShow: true
+				isShow: true,
+
+
+				input_style: 'color:#FFFFFF;font-size:30rpx;',
+				// 必须这么写，不然在小程序中不生效
+				customStyle_GetCode:{
+					width: '200rpx',
+					height: '80rpx',
+					color: '#FFFFFF',
+					fontSize: '30rpx',
+					background: '#00A8FF',
+					marginTop:'32rpx',
+					
+				},
+				
+				customStyle_Push: {
+					width: '200rpx',
+					height: '80rpx',
+					margin: '60rpx auto',
+					color: '#00A8FF',
+					fontSize: '36rpx',
+					background: '#ffffff'
+				}
 			}
 		},
 		methods: {
@@ -66,19 +89,19 @@
 					this.showToast('密码只能由字母和数字组成')
 				} else if (!this.$u.test.rangeLength(this.password, [6, 20])) {
 					this.showToast('密码长度要在6-20位之间')
-				} else if(this.password!=this.repassword){
+				} else if (this.password != this.repassword) {
 					this.showToast('两次密码不一致')
-				}else if (!this.$u.test.code(this.code, 6)) {
+				} else if (!this.$u.test.code(this.code, 6)) {
 					this.showToast('请输入正确格式的验证码')
 				}
 				//else if(){
 				//此部分为验证码是否与短信的匹配
 				// }
 				else {
-					this.$u.post('/sso/easyUpdatePassword/'+this.phone, {
-						id: this.phone, 
-						password: this.password, 
-						
+					this.$u.post('/sso/easyUpdatePassword/' + this.phone, {
+						id: this.phone,
+						password: this.password,
+
 					}).then((res) => {
 						console.log(res)
 						uni.navigateTo()
@@ -99,9 +122,24 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.content {
 		background: $color_emphasize;
 		width: 100%;
+	}
+
+	.fgt-group {
+		display: block;
+		width: 500rpx;
+		margin: 250rpx auto;
+	}
+	
+	.u-border-bottom{
+		display: flex;
+	}
+	
+	.fgt-input {
+		color: #FFFFFF;
+		font-size: $font_general_big;
 	}
 </style>
