@@ -4,8 +4,8 @@
 			<view class="u-border-bottom code-box">
 				<input class="register-input u-m-t-50 u-p-b-20" type="number" v-model="phone" placeholder="请输入手机号"
 				 :placeholder-style="input_style" />
-				<u-button v-show="isShow" @click="getCode" :custom-style="customStyle">获取验证码</u-button>
-				<u-button v-show="!isShow" disabled="true" :custom-style="customStyle">还有{{timer}}秒</u-button>
+				<u-button v-show="isShow" @click="getCode" :custom-style="customStyle_GetCode">获取验证码</u-button>
+				<u-button v-show="!isShow" disabled="true" :custom-style="customStyle_GetCode">还有{{timer}}秒</u-button>
 			</view>
 			<view class="u-border-bottom">
 				<input class="register-input u-m-t-50 u-p-b-20" type="password" v-model="password" placeholder="请输入密码"
@@ -45,10 +45,16 @@
 					fontSize: '36rpx',
 					background: '#ffffff'
 				},
-				codeStyle: {
+				customStyle_GetCode:{
 					width: '200rpx',
 					height: '80rpx',
-				}
+					color: '#FFFFFF',
+					fontSize: '30rpx',
+					background: '#00A8FF',
+					marginTop:'32rpx',
+					marginBottom:'20rpx'
+					
+				},
 			}
 		},
 		computed: {
@@ -88,7 +94,9 @@
 					this.showToast('密码只能由字母和数字组成')
 				} else if (!this.$u.test.rangeLength(this.password, [6, 20])) {
 					this.showToast('密码长度要在6-20位之间')
-				} else if (!this.$u.test.code(this.code, 6)) {
+				} else if(this.password!=this.repassword){
+					this.showToast('两次密码不一致')
+				}else if (!this.$u.test.code(this.code, 6)) {
 					this.showToast('请输入正确格式的验证码')
 				}
 				//else if(){
@@ -98,10 +106,12 @@
 					this.$u.post('/sso/register', {
 						telephone: this.phone, //17090888281
 						password: this.password, //123456
-						type: 2
+						authCode:this.code
 					}).then((res) => {
 						console.log(res)
-						uni.navigateTo()
+						uni.navigateTo({
+									url: '../login/login'
+							 	})
 					}).catch(res => {
 						console.log(res)
 						this.showToast(res.message, 'error')
