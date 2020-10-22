@@ -105,8 +105,8 @@
 					}).then((res) => {
 						console.log(res)
 						uni.navigateTo({
-									url: '../login/login'
-							 	})
+							url:'../home/home'
+						})
 					}).catch(res => {
 						console.log(res)
 						this.showToast(res.message, 'error')

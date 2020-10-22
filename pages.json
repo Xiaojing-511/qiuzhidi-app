@@ -18,14 +18,28 @@
 			"style": {
 				"navigationBarTitleText": "uView-center"
 			}
-		}, {
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
-		}, {
+		},
+		{
 			"path": "pages/switchIdentity/switchIdentity",
 			"style": {}
+		},
+		{
+			"path": "pages/fgtPassword/fgtPassword",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
 		}
 	    ,{
             "path" : "pages/register/register",
