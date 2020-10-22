@@ -105,7 +105,7 @@
 					}).then((res) => {
 						console.log(res)
 						uni.navigateTo({
-							url:'../home/home'
+							url:'../login/login'
 						})
 					}).catch(res => {
 						console.log(res)
