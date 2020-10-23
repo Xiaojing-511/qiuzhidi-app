@@ -56,10 +56,10 @@
 						<image src="../../static/img/switch_identity_1.png" mode="" class="detail-imgs"></image>
 						<view class="detail-name">
 							<view class="detail-name_text">
-								<text>公司</text>
+								<text>{{item.companyName}}</text>
 							</view>
 							<view class="detail-name_span">
-								<span>D轮级以上/1000-9999人/互联网</span>
+								<span>{{item.skillRequired}}</span>
 							</view>
 
 
