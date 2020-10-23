@@ -23,9 +23,9 @@
 
 
 		<!-- <view class="u-border-bottom"> -->
-			<view class="search-bar" v-for="(item,index) in showList" :key='index'>
+		<view class="search-bar" v-for="(item,index) in showList" :key='index'>
 
-			</view>
+		</view>
 		<!-- </view> -->
 
 
@@ -36,13 +36,13 @@
 		</view>
 
 		<view class="line">
-			
+
 		</view>
 
 
 
-		<view class="comp_list ">
-			<view v-for="(item,index) in dataList" :key="item.companyId">
+		<view class="comp_list " v-show="current===0">
+			<view v-for="(item,index) in interpolateList" :key="item.companyId" >
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -53,7 +53,7 @@
 						<span>{{item.releaseDate}}</span>
 					</li>
 					<li class='detail-imgs-box'>
-						<image src="../../static/img/switch_identity_1.png" mode="" class="detail-imgs"></image>
+						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
 						<view class="detail-name">
 							<view class="detail-name_text">
 								<text>{{item.companyName}}</text>
@@ -70,14 +70,77 @@
 			</view>
 
 		</view>
+		<view class="comp_list " v-show="current===1">
+			<view v-for="(item,index) in schoolList" :key="item.companyId" >
+				<ul>
+					<li class='detail-title'>
+						<text>{{item.recruitName}}</text>
+						<span>{{item.recruitSalary}}</span>
+					</li>
+					<li class='detail-timer'>
+						<span>{{item.recruitWorkspace}}</span>
+						<span>{{item.releaseDate}}</span>
+					</li>
+					<li class='detail-imgs-box'>
+						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
+						<view class="detail-name">
+							<view class="detail-name_text">
+								<text>{{item.companyName}}</text>
+							</view>
+							<view class="detail-name_span">
+								<span>{{item.skillRequired}}</span>
+							</view>
+		
+		
+						</view>
+		
+					</li>
+				</ul>
+			</view>
+		
+		</view>
+		
+		<view class="comp_list " v-show="current===2">
+			<view v-for="(item,index) in socialList" :key="item.companyId">
+				<ul>
+					<li class='detail-title'>
+						<text>{{item.recruitName}}</text>
+						<span>{{item.recruitSalary}}</span>
+					</li>
+					<li class='detail-timer'>
+						<span>{{item.recruitWorkspace}}</span>
+						<span>{{item.releaseDate}}</span>
+					</li>
+					<li class='detail-imgs-box'>
+						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
+						<view class="detail-name">
+							<view class="detail-name_text">
+								<text>{{item.companyName}}</text>
+							</view>
+							<view class="detail-name_span">
+								<span>{{item.skillRequired}}</span>
+							</view>
+		
+		
+						</view>
+		
+					</li>
+				</ul>
+			</view>
+		
+		</view>
 	</view>
 </template>
 
 <script>
 	export default {
 		onLoad() {
-			this.getimgs()
-			this.changeDatalist()
+			this.getimgs();
+			this.getInterpolateList();
+			
+		},
+		onReachBottom() {
+			this.upDatalist()
 		},
 		data() {
 			return {
@@ -88,15 +151,23 @@
 				}, {
 					cate_name: '社招'
 				}],
-
-
-
+				innerPageNum: 1,
+				innerIsLast: false,
+				innerIsFinsh: true,
+				schoolPageNum: 1,
+				schoolIsLast: false,
+				schoolIsFinsh: true,
+				socialPageNum: 1,
+				socialIsLast: false,
+				socialIsFinsh: true,
 				current: 0,
 				imgs: [],
 				seachText: '',
 				searchList: [],
 				showList: [],
-				dataList: [],
+				interpolateList: [],
+				schoolList:[],
+				socialList:[],
 				customStyle: {
 					width: '120rpx',
 					color: '#FFFFFF',
@@ -113,25 +184,79 @@
 			change(index) {
 				this.current = index;
 				console.log(this.current);
-				this.changeDatalist()
+				this.changeList()
 			},
-			changeDatalist() {
-				this.$u.post('/recruit/information', {
-					type: this.current
-				}).then((res) => {
-					console.log(res)
-					this.dataList = res.list
-					console.log(this.dataList)
-				})
+			changeList(){
+				if(this.current==0&&this.innerIsFinsh&&!this.innerIsLast){
+					this.getInterpolateList()
+					
+				}else if(this.current==1&&this.schoolIsFinsh&&!this.schoolIsLast){
+					this.getSchoolList()
+					
+				}else if(this.current==2&&this.socialIsFinsh&&!this.socialIsLast){
+					this.getSocialList()
+					
+				}
+			},
+			getInterpolateList() {
+				if (this.innerIsFinsh) {
+					this.innerIsFinsh = false
+					this.$u.post('/recruit/information', {
+						type: this.current,
+						pageNum: this.innerPageNum
+					}).then((res) => {
+						console.log(res)
+						this.interpolateList = this.interpolateList.concat(res.list);
+						this.innerIsFinsh = true;
+						this.innerIsLast = res.isLastPage;
+						this.innerPageNum++
+						console.log(this.interpolateList)
+					})
+				}
+			},
+			getSchoolList() {
+				if (this.schoolIsFinsh) {
+					this.schoolIsFinsh = false
+					this.$u.post('/recruit/information', {
+						type: this.current,
+						pageNum: this.schoolPageNum
+					}).then((res) => {
+						console.log(res)
+						this.schoolList = this.schoolList.concat(res.list);
+						this.schoolIsFinsh = true;
+						this.schoolIsLast = res.isLastPage;
+						this.schoolPageNum++;
+						console.log(this.schoolList)
+					})
+				}
+			},
+			getSocialList() {
+				if (this.socialIsFinsh) {
+					this.socialIsFinsh = false
+					this.$u.post('/recruit/information', {
+						type: this.current,
+						pageNum: this.socialPageNum
+					}).then((res) => {
+						console.log(res)
+						this.socialList = this.socialList.concat(res.list);
+						this.socialIsFinsh = true;
+						this.socialIsLast = res.isLastPage;
+						this.socialPageNum++
+						console.log(this.socialList)
+					})
+				}
 			},
 			getimgs() {
 				this.$u.get('/recruit/rotation').then((res) => {
 					this.imgs = res.map((value) => {
-						return 'http://118.24.96.51:8085/' + value.url
+						return 'http://118.24.96.51:8085/' + value.url;
 					})
 					console.log(this.imgs)
 				})
 			},
+			upDatalist() {
+				this.changeList()
+			}
 
 		}
 	}
@@ -267,8 +392,8 @@
 		display: flex;
 
 	}
-	
-	.line{
+
+	.line {
 		margin-top: 10rpx;
 		border: 1rpx solid rgba($color: #666666, $alpha: 0.1);
 	}
