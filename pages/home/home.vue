@@ -2,7 +2,7 @@
 	<view class="content">
 		<u-swiper :list="imgs"></u-swiper>
 		<view class="dtlbox">
-			<view>
+			<view class="">
 				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
 				<view class="dtl-word">内推</view>
 			</view>
@@ -16,22 +16,36 @@
 			</view>
 		</view>
 		<view class="srchbox u-m-t-20">
-			<input type="text" class="input-search" placeholder="请输入" v-model="seachText" />
+			<input type="text" class="input-search" placeholder="请输入" v-model="seachText" :placeholder-style="inp_src" />
 			<u-button :custom-style="customStyle" shape="circle">搜索</u-button>
+
 		</view>
-		<view class="search-bar" v-for="(item,index) in showList" :key='index'>
-			
-		</view>
-		<view class="tab-box">
+
+
+		<!-- <view class="u-border-bottom"> -->
+			<view class="search-bar" v-for="(item,index) in showList" :key='index'>
+
+			</view>
+		<!-- </view> -->
+
+
+
+		<view class="tab-box ">
 			<u-tabs name="cate_name" count="cate_count" :list="list" :is-scroll="false" :current="current" @change="change"
 			 font-size="30" class="tabs"></u-tabs>
 		</view>
 
-		<view class="">
+		<view class="line">
+			
+		</view>
+
+
+
+		<view class="comp_list ">
 			<view v-for="(item,index) in dataList" :key="item.companyId">
 				<ul>
 					<li class='detail-title'>
-						<h1>{{item.recruitName}}</h1>
+						<text>{{item.recruitName}}</text>
 						<span>{{item.recruitSalary}}</span>
 					</li>
 					<li class='detail-timer'>
@@ -41,8 +55,14 @@
 					<li class='detail-imgs-box'>
 						<image src="../../static/img/switch_identity_1.png" mode="" class="detail-imgs"></image>
 						<view class="detail-name">
-							<h3>公司</h3>
-							<span>D轮级以上/1000-9999人/互联网</span>
+							<view class="detail-name_text">
+								<text>公司</text>
+							</view>
+							<view class="detail-name_span">
+								<span>D轮级以上/1000-9999人/互联网</span>
+							</view>
+
+
 						</view>
 
 					</li>
@@ -69,6 +89,8 @@
 					cate_name: '社招'
 				}],
 
+
+
 				current: 0,
 				imgs: [],
 				seachText: '',
@@ -77,8 +99,14 @@
 				dataList: [],
 				customStyle: {
 					width: '120rpx',
+					color: '#FFFFFF',
+					fontSize: '30rpx',
+					background: '#00A8FF'
 
 				},
+				// input_style: 'color:#FFFFFF;font-size:30rpx;',
+				inp_src: 'text-align:center',
+
 			}
 		},
 		methods: {
@@ -104,12 +132,12 @@
 					console.log(this.imgs)
 				})
 			},
-			
+
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.content {
 		width: 100%;
 		margin-left: 20rpx;
@@ -121,11 +149,12 @@
 		display: flex;
 		-webkit-justify-content: space-around;
 		justify-content: space-around;
+		margin: 40rpx auto;
 	}
 
 	.dtl-img {
-		height: 34px;
-		width: 38px;
+		height: 100rpx;
+		width: 100rpx;
 
 	}
 
@@ -143,6 +172,9 @@
 	.srchbox {
 		display: flex;
 		justify-content: space-between;
+		padding: 0 26rpx;
+		margin-bottom: 26rpx;
+
 	}
 
 	.search-bar {
@@ -201,5 +233,47 @@
 
 	.detail-name {
 		margin-left: 50rpx;
+	}
+
+	.comp_list {
+
+		padding: 0 26rpx;
+	}
+
+	.detail-title span {
+		margin: auto 10rpx;
+		color: #FA3534;
+	}
+
+	.detail-title {
+		margin: 20rpx 0;
+	}
+
+	.detail-timer {
+		margin-bottom: 30rpx;
+	}
+
+	.detail-title text {
+		font-size: 40rpx;
+		font-weight: 700;
+
+	}
+
+	.detail-name {
+		margin-bottom: 40rpx;
+	}
+
+	.u-border-bottom {
+		display: flex;
+
+	}
+	
+	.line{
+		margin-top: 10rpx;
+		border: 1rpx solid rgba($color: #666666, $alpha: 0.1);
+	}
+
+	ul {
+		padding-inline-start: 0rpx;
 	}
 </style>

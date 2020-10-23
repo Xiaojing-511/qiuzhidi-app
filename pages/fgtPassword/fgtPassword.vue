@@ -18,7 +18,7 @@
 			<view class="u-border-bottom">
 				<input class="fgt-input u-m-t-50 u-p-b-20" type="password" v-model="repassword" placeholder="请确认新密码":placeholder-style="input_style" />
 			</view>
-			<u-button @click="changeps" :custom-style="customStyle_Push" shape="circle">提交</u-button>
+			<u-button @click="changeps" :custom-style="customStyle_Push" shape="circle">注册</u-button>
 		</view>
 		<u-toast ref="uToast" />
 	</view>
