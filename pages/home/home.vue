@@ -1,23 +1,23 @@
 <template>
 	<view class="content">
-		<u-swiper :list="imgs"></u-swiper>
+		<u-swiper :list="imgs" ></u-swiper>
 		<view class="dtlbox">
-			<view class="">
+			<view class="" @click="goInner">
 				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
 				<view class="dtl-word">内推</view>
 			</view>
-			<view>
+			<view @click="goSchool">
 				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
 				<view class="dtl-word">面试指导</view>
 			</view>
-			<view>
+			<view @click="goSocial">
 				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
 				<view class="dtl-word">我要招人</view>
 			</view>
 		</view>
 		<view class="srchbox u-m-t-20">
 			<input type="text" class="input-search" placeholder="请输入" v-model="seachText" :placeholder-style="inp_src" />
-			<u-button :custom-style="customStyle" shape="circle">搜索</u-button>
+			<u-button :custom-style="customStyle" shape="circle" @click="goSearch">搜索</u-button>
 
 		</view>
 
@@ -42,7 +42,7 @@
 
 
 		<view class="comp_list " v-show="current===0">
-			<view v-for="(item,index) in interpolateList" :key="item.companyId" >
+			<view v-for="(item,index) in interpolateList" :key="item.companyId"  @click="goDetail">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -70,8 +70,8 @@
 			</view>
 
 		</view>
-		<view class="comp_list " v-show="current===1">
-			<view v-for="(item,index) in schoolList" :key="item.companyId" >
+		<view class="comp_list " v-show="current===1" >
+			<view v-for="(item,index) in schoolList" :key="item.companyId"@click="goDetail">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -101,7 +101,7 @@
 		</view>
 		
 		<view class="comp_list " v-show="current===2">
-			<view v-for="(item,index) in socialList" :key="item.companyId">
+			<view v-for="(item,index) in socialList" :key="item.companyId" @click="goDetail">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -136,11 +136,11 @@
 	export default {
 		onLoad() {
 			this.getimgs();
-			this.getInterpolateList();
+			this.fitstGet();
 			
 		},
 		onReachBottom() {
-			this.upDatalist()
+			this.upList();
 		},
 		data() {
 			return {
@@ -154,12 +154,15 @@
 				innerPageNum: 1,
 				innerIsLast: false,
 				innerIsFinsh: true,
+				innerIsFirst: true, //是否是第一次获取
 				schoolPageNum: 1,
 				schoolIsLast: false,
 				schoolIsFinsh: true,
+				schoolIsFirst:true, //是否是第一次获取
 				socialPageNum: 1,
 				socialIsLast: false,
 				socialIsFinsh: true,
+				socialIsFirst:true,  //是否是第一次获取
 				current: 0,
 				imgs: [],
 				seachText: '',
@@ -177,6 +180,7 @@
 				},
 				// input_style: 'color:#FFFFFF;font-size:30rpx;',
 				inp_src: 'text-align:center',
+				
 
 			}
 		},
@@ -184,18 +188,35 @@
 			change(index) {
 				this.current = index;
 				console.log(this.current);
-				this.changeList()
+				this.upList()
 			},
-			changeList(){
+			goSearch(){
+				uni.navigateTo({
+					url:''
+				})
+			},
+			fitstGet(){
+				if(this.current==0&&this.innerIsFirst){
+					this.getInterpolateList()
+					this.innerIsFirst=false
+				}else if(this.current==1&&this.schoolIsFirst){
+					this.getSchoolList()
+					this.schoolIsFirst=false
+				}else if(this.current==2&&this.socialIsFirst){
+					this.getSocialList()
+					this.socialIsFirst=false
+				}
+			},
+			upList(){
 				if(this.current==0&&this.innerIsFinsh&&!this.innerIsLast){
 					this.getInterpolateList()
+					console.log(this.innerPageNum)
 					
 				}else if(this.current==1&&this.schoolIsFinsh&&!this.schoolIsLast){
 					this.getSchoolList()
 					
 				}else if(this.current==2&&this.socialIsFinsh&&!this.socialIsLast){
 					this.getSocialList()
-					
 				}
 			},
 			getInterpolateList() {
@@ -209,8 +230,11 @@
 						this.interpolateList = this.interpolateList.concat(res.list);
 						this.innerIsFinsh = true;
 						this.innerIsLast = res.isLastPage;
-						this.innerPageNum++
+						this.innerPageNum++;
+						
 						console.log(this.interpolateList)
+					}).catch((res)=>{
+						this.showList(res.message)
 					})
 				}
 			},
@@ -241,7 +265,7 @@
 						this.socialList = this.socialList.concat(res.list);
 						this.socialIsFinsh = true;
 						this.socialIsLast = res.isLastPage;
-						this.socialPageNum++
+						this.socialPageNum++;
 						console.log(this.socialList)
 					})
 				}
@@ -254,9 +278,28 @@
 					console.log(this.imgs)
 				})
 			},
-			upDatalist() {
-				this.changeList()
+			goInner(){
+				uni.navigateTo({
+					url:''
+				})
+			},
+			goSchool(){
+				uni.navigateTo({
+					url:''
+				})
+			},
+			goSocial(){
+				uni.navigateTo({
+					url:''
+				})
+			},
+			goDetail(){
+				uni.navigateTo({
+					url:''
+				})
+				
 			}
+		
 
 		}
 	}
