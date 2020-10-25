@@ -1,48 +1,35 @@
 <template>
 	<view class="content">
-		<u-swiper :list="imgs" ></u-swiper>
-		<view class="dtlbox">
-			<view class="" @click="goInner">
-				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
-				<view class="dtl-word">内推</view>
+		<view class="white-back">
+			<view class="back-img">
+				<u-search shape="round" :clearabled="false" :animation="false" :show-action="false" height="64" placeholder="JAVA工作"
+							 v-model="searchWord" bg-color='#F2F2F2'></u-search>
+							<view class="swiper-imgs">
+								<u-swiper :list="imgs" class="inner-imgs" height='300'></u-swiper>
+							</view>
 			</view>
-			<view @click="goSchool">
-				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
-				<view class="dtl-word">面试指导</view>
+			
+					
+			<view class="dtlbox">
+				<view class="" @click="goInner">
+					<image src="../../static/img/WechatIMG752.png" class="dtl-img"></image>
+				</view>
+				<view @click="goSchool">
+					<image src="../../static/img/WechatIMG751.png" class="dtl-img"></image>
+				</view>
+				<view @click="goSocial">
+					<image src="../../static/img/WechatIMG745.png" class="dtl-img last-img"></image>
+				</view>
 			</view>
-			<view @click="goSocial">
-				<image src="../../static/img/switch_identity_2.png" class="dtl-img"></image>
-				<view class="dtl-word">我要招人</view>
+			<view class="tab-box ">
+				<u-tabs name="cate_name" count="cate_count" :list="list" :is-scroll="false" :current="current" @change="change"
+				 :show-bar='false' font-size="30" class="tabs" active-color='#333333' inactive-color='#999999'></u-tabs>
 			</view>
 		</view>
-		<view class="srchbox u-m-t-20">
-			<input type="text" class="input-search" placeholder="请输入" v-model="seachText" :placeholder-style="inp_src" />
-			<u-button :custom-style="customStyle" shape="circle" @click="goSearch">搜索</u-button>
-
-		</view>
-
-
-		<!-- <view class="u-border-bottom"> -->
-		<view class="search-bar" v-for="(item,index) in showList" :key='index'>
-
-		</view>
-		<!-- </view> -->
-
-
-
-		<view class="tab-box ">
-			<u-tabs name="cate_name" count="cate_count" :list="list" :is-scroll="false" :current="current" @change="change"
-			 font-size="30" class="tabs"></u-tabs>
-		</view>
-
-		<view class="line">
-
-		</view>
-
 
 
 		<view class="comp_list " v-show="current===0">
-			<view v-for="(item,index) in interpolateList" :key="item.companyId"  @click="goDetail">
+			<view v-for="(item,index) in interpolateList" :key="item.companyId" @click="goDetail" class="detail-circulate">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -70,8 +57,8 @@
 			</view>
 
 		</view>
-		<view class="comp_list " v-show="current===1" >
-			<view v-for="(item,index) in schoolList" :key="item.companyId"@click="goDetail">
+		<view class="comp_list " v-show="current===1">
+			<view v-for="(item,index) in schoolList" :key="item.companyId" @click="goDetail" class="detail-circulate">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -90,18 +77,18 @@
 							<view class="detail-name_span">
 								<span>{{item.skillRequired}}</span>
 							</view>
-		
-		
+
+
 						</view>
-		
+
 					</li>
 				</ul>
 			</view>
-		
+
 		</view>
-		
+
 		<view class="comp_list " v-show="current===2">
-			<view v-for="(item,index) in socialList" :key="item.companyId" @click="goDetail">
+			<view v-for="(item,index) in socialList" :key="item.companyId" @click="goDetail" class="detail-circulate">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -120,14 +107,14 @@
 							<view class="detail-name_span">
 								<span>{{item.skillRequired}}</span>
 							</view>
-		
-		
+
+
 						</view>
-		
+
 					</li>
 				</ul>
 			</view>
-		
+
 		</view>
 	</view>
 </template>
@@ -137,7 +124,7 @@
 		onLoad() {
 			this.getimgs();
 			this.fitstGet();
-			
+
 		},
 		onReachBottom() {
 			this.upList();
@@ -158,19 +145,18 @@
 				schoolPageNum: 1,
 				schoolIsLast: false,
 				schoolIsFinsh: true,
-				schoolIsFirst:true, //是否是第一次获取
+				schoolIsFirst: true, //是否是第一次获取
 				socialPageNum: 1,
 				socialIsLast: false,
 				socialIsFinsh: true,
-				socialIsFirst:true,  //是否是第一次获取
+				socialIsFirst: true, //是否是第一次获取
 				current: 0,
 				imgs: [],
-				seachText: '',
-				searchList: [],
+				searchWord: '',
 				showList: [],
 				interpolateList: [],
-				schoolList:[],
-				socialList:[],
+				schoolList: [],
+				socialList: [],
 				customStyle: {
 					width: '120rpx',
 					color: '#FFFFFF',
@@ -180,7 +166,7 @@
 				},
 				// input_style: 'color:#FFFFFF;font-size:30rpx;',
 				inp_src: 'text-align:center',
-				
+
 
 			}
 		},
@@ -190,32 +176,32 @@
 				console.log(this.current);
 				this.upList()
 			},
-			goSearch(){
+			goSearch() {
 				uni.navigateTo({
-					url:''
+					url: ''
 				})
 			},
-			fitstGet(){
-				if(this.current==0&&this.innerIsFirst){
+			fitstGet() {
+				if (this.current == 0 && this.innerIsFirst) {
 					this.getInterpolateList()
-					this.innerIsFirst=false
-				}else if(this.current==1&&this.schoolIsFirst){
+					this.innerIsFirst = false
+				} else if (this.current == 1 && this.schoolIsFirst) {
 					this.getSchoolList()
-					this.schoolIsFirst=false
-				}else if(this.current==2&&this.socialIsFirst){
+					this.schoolIsFirst = false
+				} else if (this.current == 2 && this.socialIsFirst) {
 					this.getSocialList()
-					this.socialIsFirst=false
+					this.socialIsFirst = false
 				}
 			},
-			upList(){
-				if(this.current==0&&this.innerIsFinsh&&!this.innerIsLast){
+			upList() {
+				if (this.current == 0 && this.innerIsFinsh && !this.innerIsLast) {
 					this.getInterpolateList()
 					console.log(this.innerPageNum)
-					
-				}else if(this.current==1&&this.schoolIsFinsh&&!this.schoolIsLast){
+
+				} else if (this.current == 1 && this.schoolIsFinsh && !this.schoolIsLast) {
 					this.getSchoolList()
-					
-				}else if(this.current==2&&this.socialIsFinsh&&!this.socialIsLast){
+
+				} else if (this.current == 2 && this.socialIsFinsh && !this.socialIsLast) {
 					this.getSocialList()
 				}
 			},
@@ -231,9 +217,9 @@
 						this.innerIsFinsh = true;
 						this.innerIsLast = res.isLastPage;
 						this.innerPageNum++;
-						
+
 						console.log(this.interpolateList)
-					}).catch((res)=>{
+					}).catch((res) => {
 						this.showList(res.message)
 					})
 				}
@@ -278,41 +264,52 @@
 					console.log(this.imgs)
 				})
 			},
-			goInner(){
+			goInner() {
 				uni.navigateTo({
-					url:''
+					url: ''
 				})
 			},
-			goSchool(){
+			goSchool() {
 				uni.navigateTo({
-					url:''
+					url: ''
 				})
 			},
-			goSocial(){
+			goSocial() {
 				uni.navigateTo({
-					url:''
+					url: ''
 				})
 			},
-			goDetail(){
+			goDetail() {
 				uni.navigateTo({
-					url:''
+					url: ''
 				})
-				
+
 			}
-		
+
 
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.content {
-		width: 100%;
-		margin-left: 20rpx;
-		margin-right: 20rpx;
+	.white-back {
+		background-color: #FFFFFF;
+		margin-left: -30rpx;
+		margin-right: -30rpx;
+		padding: 0 30rpx;
 	}
 
-	,
+	.content {
+		width: 100%;
+		padding: 0 30rpx;
+		background-color: #DDDDDD;
+	}
+
+	.swiper-imgs {
+		margin-top: 40rpx;
+		height: 300rpx;
+	}
+
 	.dtlbox {
 		display: flex;
 		-webkit-justify-content: space-around;
@@ -321,9 +318,24 @@
 	}
 
 	.dtl-img {
-		height: 100rpx;
-		width: 100rpx;
+		height: 125rpx;
+		width: 220rpx;
+		margin-right: 15rpx;
 
+	}
+
+	.last-img {
+		margin-right: 0rpx;
+	}
+
+
+	.back-img {
+	background-image: url(../../static/img/WechatIMG766.png);
+	margin-left: -30rpx;
+	margin-right: -30rpx;
+	padding: 0 30rpx;
+	background-size:750rpx 360rpx;
+	background-repeat: no-repeat;
 	}
 
 	.dtl-word {
@@ -377,6 +389,13 @@
 
 	}
 
+	.comp_list {
+		// background-color: #DDDDDD;
+		margin-left: -30rpx;
+		margin-right: -30rpx;
+		padding: 0 30rpx;
+	}
+
 	.detail-title {
 		display: flex;
 		justify-content: space-between;
@@ -403,9 +422,12 @@
 		margin-left: 50rpx;
 	}
 
-	.comp_list {
+	.detail-circulate {
+		background-color: #FFFFFF;
+		margin-left: -30rpx;
+		margin-right: -30rpx;
+		padding: 0 30rpx;
 
-		padding: 0 26rpx;
 	}
 
 	.detail-title span {
