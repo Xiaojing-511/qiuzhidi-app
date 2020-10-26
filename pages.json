@@ -51,7 +51,11 @@
 		{
 			"path": "pages/fgtPassword/fgtPassword",
 			"style": {
-				"navigationBarTitleText": "忘记密码"
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "找回密码",
+				"navigationBarBackgroundColor": "#FFFFFF"
+				
+				
 			}
 		},
 		{
