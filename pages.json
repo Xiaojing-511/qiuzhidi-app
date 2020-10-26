@@ -4,6 +4,10 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/home/home",
+		    "style" : {}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页"
@@ -43,13 +47,24 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "历史反馈"
 			}
+		},
+		{
+			"path": "pages/fgtPassword/fgtPassword",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
 		}
-
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
-		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarBackgroundColor": "#00A8FF",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

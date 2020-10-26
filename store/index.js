@@ -53,7 +53,7 @@ const store = new Vuex.Store({
 				text: '模板',
 				pagePath: '/pages/example/template'
 			}
-		]
+		],
 	},
 	mutations: {
 		$uStore(state, payload) {

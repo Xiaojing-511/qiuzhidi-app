@@ -3,6 +3,7 @@
 		<image class="identity-img" src="../../static/img/switch_identity_1.png" mode=""></image>
 		<u-button type="primary">我要找工作</u-button>
 		<image class="identity-img" src="../../static/img/switch_identity_2.png" mode=""></image>
+		<u-button type="primary">我要招聘</u-button>
 	</view>
 </template>
 <script>
