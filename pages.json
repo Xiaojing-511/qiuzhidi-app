@@ -4,8 +4,29 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/home/home",
-		    "style" : {}
+			"path": "pages/home/home",
+			"style": {
+				
+				"onReachBottomDistance": 100,
+				"app-plus": {
+					"titleNView":{
+						"searchInput": {
+							"align": "center",
+							"placeholder": "JAVA工作",
+							"borderRadius": "50upx",
+							"backgroundColor": "#fff"
+						}
+					}
+					
+				}
+
+			}
+		},
+		{
+			"path": "pages/myDistribution/myDistribution",
+			"style": {
+				"onReachBottomDistance": 100
+			}
 		},
 		{
 			"path": "pages/index/index",
@@ -41,22 +62,30 @@
 				"navigationBarTitleText": "注册"
 			}
 		}
-	  //   ,{
-   //          "path" : "pages/register/register",
-   //          "style" : {},
-			// "navigationBarTitleText": "注册"
-   //      }
-        // ,{
-        //     "path" : "pages/fgtPassword/fgtPassword",
-        //     "style" : {}
-        // }
-        
-        
+		//   ,{
+		//          "path" : "pages/register/register",
+		//          "style" : {},
+		// "navigationBarTitleText": "注册"
+		//      }
+		// ,{
+		//     "path" : "pages/fgtPassword/fgtPassword",
+		//     "style" : {}
+		// }
+
+
+
+	  
+        ,{
+            "path" : "pages/search/search",
+            "style" : {
+				"onReachBottomDistance": 50
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
-		"navigationBarBackgroundColor": "#00A8FF",
+		"navigationBarBackgroundColor": "#219FFD",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
