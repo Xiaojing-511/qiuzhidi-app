@@ -46,7 +46,7 @@
 			"path": "pages/search/search",
 			"style": {
 				"navigationBarTextStyle": "black",
-				"onReachBottomDistance": 100
+				"onReachBottomDistance": 20
 			}
 		}, {
 			"path": "pages/myDistribution/myDistribution",
