@@ -3,7 +3,7 @@
 		<view class="white-back">
 			<view class="back-img">
 				<u-search shape="round" :clearabled="false" :animation="false" :show-action="false" height="64" placeholder="JAVA工作"
-							 v-model="searchWord" bg-color='#F2F2F2'></u-search>
+							 v-model="searchWord" bg-color='#F2F2F2' @click="goSearch" :disabled="true" ></u-search>
 							<view class="swiper-imgs">
 								<u-swiper :list="imgs" class="inner-imgs" height='300'></u-swiper>
 							</view>
@@ -37,7 +37,7 @@
 					</li>
 					<li class='detail-timer'>
 						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
+						<span>{{item.releaseDate.slice(0,10)}}</span>
 					</li>
 					<li class='detail-imgs-box'>
 						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
@@ -66,7 +66,7 @@
 					</li>
 					<li class='detail-timer'>
 						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
+						<span>{{item.releaseDate.slice(0,10)}}</span>
 					</li>
 					<li class='detail-imgs-box'>
 						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
@@ -96,7 +96,7 @@
 					</li>
 					<li class='detail-timer'>
 						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
+						<span>{{item.releaseDate.slice(0,10)}}</span>
 					</li>
 					<li class='detail-imgs-box'>
 						<image :src="'http://118.24.96.51:8085/'+item.companyLogo" mode="" class="detail-imgs"></image>
@@ -284,6 +284,12 @@
 					url: ''
 				})
 
+			},
+			goSearch(){
+				console.log('111')
+				uni.navigateTo({
+					url: '../search/search'
+				})
 			}
 
 
@@ -314,7 +320,8 @@
 		display: flex;
 		-webkit-justify-content: space-around;
 		justify-content: space-around;
-		margin: 40rpx auto;
+		margin: 30rpx auto;
+		margin-bottom: 0rpx;
 	}
 
 	.dtl-img {
@@ -411,6 +418,7 @@
 	.detail-imgs {
 		width: 80rpx;
 		height: 80rpx;
+		border-radius: 10rpx;
 	}
 
 	.detail-imgs-box {
@@ -431,7 +439,7 @@
 	}
 
 	.detail-title span {
-		margin: auto 10rpx;
+		margin: auto 0rpx;
 		color: #FA3534;
 	}
 
