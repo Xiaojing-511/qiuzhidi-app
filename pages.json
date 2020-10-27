@@ -23,7 +23,45 @@
 			"path": "pages/switchIdentity/switchIdentity",
 			"style": {}
 		}
-	],
+	    ,{
+            "path" : "pages/interpolation/interpolation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "内推",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTextStyle": "black"
+				// "backgroundColor":"#EEEEEE"
+            }
+            
+        }
+        ,{
+            "path" : "pages/issueInterpolation/issueInterpolation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发布内推悬赏",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/pushList/pushList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "内推列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/choose/choose",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",

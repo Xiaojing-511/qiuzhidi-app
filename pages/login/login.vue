@@ -21,8 +21,8 @@
 	export default {
 		data() {
 			return {
-				phone: '',
-				password: '',
+				phone: '17090888111',
+				password: '123',
 				// 注意该属性的值只支持字符串形式
 				input_style: 'color:#FFFFFF;font-size:30rpx;',
 				// 必须这么写，不然在小程序中不生效
@@ -48,12 +48,13 @@
 					this.showToast('请输入密码')
 				} else if (!this.$u.test.enOrNum(this.password)) {
 					this.showToast('密码只能由字母和数字组成')
-				} else if (!this.$u.test.rangeLength(this.password, [6, 20])) {
-					this.showToast('密码长度要在6-20位之间')
-				} else {
+				// } else if (!this.$u.test.rangeLength(this.password, [6, 20])) {
+				// 	this.showToast('密码长度要在6-20位之间')
+				 } else {
 					this.$u.post('sso/login', {
 						phone: this.phone, //17090888281
 						password: this.password, //123456
+						type:1
 					}).then(res => {
 						// 将token存储在vuex中（用的uview优化过的写法，vuex_token字段配置了，可以直接存在了本地存储中）
 						this.$u.vuex('vuex_token', res.token)
