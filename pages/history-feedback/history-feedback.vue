@@ -39,7 +39,7 @@
 			}
 		},
 		onLoad() {
-		this.$u.get(' ',{
+		this.$u.get('http:47.99.121.209:8093/feedback/historyFeedback' ,{
 			
 		}).then(res=>{
 			console.log(res);
