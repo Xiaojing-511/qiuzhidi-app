@@ -406,6 +406,7 @@
 	.detail-title {
 		display: flex;
 		justify-content: space-between;
+		padding-top: 20rpx;
 	}
 
 	.detail-timer {
