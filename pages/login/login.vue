@@ -2,7 +2,7 @@
 	<view class="content">
 		<view class="login-group">
 			<view class="u-border-bottom">
-				<input class="login-input u-m-t-50 u-p-b-20" type="number" v-model="phone" placeholder="请输入手机号" :placeholder-style="input_style" />
+				<input class="login-input u-m-t-50 u-p-b-20" type="number" v-model="phone" placeholder="请输入手机号" :placeholder-style="inputStyle" />
 			</view>
 			<view class="u-border-bottom">
 				<input class="login-input u-m-t-50 u-p-b-20" type="password" v-model="password" placeholder="请输入密码"
@@ -24,7 +24,7 @@
 				phone: '',
 				password: '',
 				// 注意该属性的值只支持字符串形式
-				input_style: 'color:#FFFFFF;font-size:30rpx;',
+				inputStyle: 'color:#FFFFFF;font-size:30rpx;',
 				// 必须这么写，不然在小程序中不生效
 				customStyle: {
 					width: '200rpx',
@@ -38,6 +38,9 @@
 		},
 		computed: {
 
+		},
+		onReachBottom() {
+			console.log(666);
 		},
 		methods: {
 			login() {
@@ -94,6 +97,5 @@
 				font-size: $font_general_small;
 			}
 		}
-
 	}
 </style>
