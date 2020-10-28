@@ -5,9 +5,7 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/home/home",
-			"style": {
-				"onReachBottomDistance": 100
-			}
+			"style": {}
 		},
 		{
 			"path": "pages/index/index",
@@ -45,14 +43,11 @@
 		}, {
 			"path": "pages/search/search",
 			"style": {
-				"navigationBarTextStyle": "black",
-				"onReachBottomDistance": 20
+				"navigationBarTextStyle": "black"
 			}
 		}, {
 			"path": "pages/myDistribution/myDistribution",
-			"style": {
-				"onReachBottomDistance": 100
-			}
+			"style": {}
 		},
 		{
 			"path": "pages/history-feedback/history-feedback",
@@ -67,8 +62,6 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "找回密码",
 				"navigationBarBackgroundColor": "#FFFFFF"
-
-
 			}
 		},
 		{
@@ -82,7 +75,8 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
 		"navigationBarBackgroundColor": "#00A8FF",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance":50
 	},
 	"tabBar": {
 		"color": "#909399",
