@@ -64,7 +64,15 @@
 				"navigationBarTitleText": "注册"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/interviewer_editor/interviewer_editor",
+            "style" : {
+				"navigationBarTitleText": "面试官编辑",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
