@@ -10,20 +10,16 @@
 				</view>
 				<input class="fgt-input u-m-t-50 u-p-b-20" type="number" v-model="phone" placeholder="请输入手机号" :placeholder-style="input_style" />
 			</view>
-			<!-- 	<view class="getCode_btn">
-				<u-button v-show="isShow" @click="getCode" :custom-style="customStyle_GetCode">获取验证码</u-button>
-				<u-button v-show="!isShow" disabled="true" :custom-style="customStyle_GetCode">还有{{timer}}秒</u-button>
-			</view> -->
 			<view class="box" >
 				<view class="img_box">
 					<image class="fgt_img" src="../../static/img/3.png" mode=""></image>
 				</view>
 				<input class="fgt-input u-m-t-50 u-p-b-20" type="number" v-model="code" placeholder="请输入验证码" :placeholder-style="input_style" />
 				<view class="getCode_btn">
-<!-- 					\<button class="getCode" v-show="isShow" @click="getCode" >获取验证码</button>
-					<button class="getCode" v-show="!isShow" disabled="true" >还有{{timer}}秒</button> -->
-					<a class="getCode" v-show="isShow" @click="getCode" >获取验证码</a>
-					<a class="getCode" v-show="!isShow" disabled="true" >还有{{timer}}秒</a>
+					<button class="getCode" v-show="isShow" @click="getCode" >获取验证码</button>
+					<button class="getCode" v-show="!isShow" disabled="true" >还有{{timer}}秒</button>
+			<!-- 		<a class="getCode" v-show="isShow" @click="getCode" >获取验证码</a>
+					<a class="getCode" v-show="!isShow" disabled="true" >还有{{timer}}秒</a> -->
 				</view>
 			</view>
 			<view class="box">
@@ -59,15 +55,7 @@
 				isShow: true,
 				code: '',
 				input_style: 'color:#999999;font-size:30rpx;',
-				// customStyle_GetCode: {
-				// 	width: '100rpx',
-				// 	height: '110rpx',
-				// 	color: '#00A8FF',
-				// 	fontSize: '30rpx',
-				// 	background: '#FFFFFF',
-				// 	marginTop: '50rpx',
-				// 	marginBottom: '20rpx',
-					
+
 					
 					
 				
@@ -172,19 +160,20 @@
 		position: absolute;
 		right: 100rpx;
 		top: 340rpx;
+		
 		border-left:1rpx solid rgba($color: #00A8FF, $alpha: 1.0) ;
 		height: 70rpx;
 		
 	
 	}
-	.getCode_btn a {
-		height: 100%;
-		line-height: 100%;
-		width: 100%;
-		margin-left: 20rpx;
-		margin-top:20rpx ;
+	// .getCode_btn a {
+	// 	height: 100%;
+	// 	line-height: 100%;
+	// 	width: 100%;
+	// 	margin-left: 20rpx;
+	// 	margin-top:20rpx ;
 		
-	}
+	// }
 	
 	
 	.img_box{
@@ -221,13 +210,19 @@
 	
 	.getCode {
 		
-			width: 100rpx;
-			height: 110rpx;
-			color: #00A8FF;
-			fontSize: 30rpx;
-			background: #FFFFFF;
-			margin: 56rpx 0 20rpx 0;
 			
+			color: #00A8FF;
+			font-size: 30rpx;
+			background: #FFFFFF;
+			margin-right: -20rpx;
+			margin-left:4rpx ;
+			border: 0;
+			outline: none;
+			
+			
+	}
+	.getCode::after {
+		border: none;
 	}
 	
 	
