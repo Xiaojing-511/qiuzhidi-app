@@ -70,7 +70,45 @@
 				"navigationBarTitleText": "注册"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/interpolation/interpolation",
+            "style" :
+            {
+                "navigationBarTitleText": "内推",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTextStyle": "black"
+				// "backgroundColor":"#EEEEEE"
+            }
+
+        }
+        ,{
+            "path" : "pages/issueInterpolation/issueInterpolation",
+            "style" :
+            {
+                "navigationBarTitleText": "发布内推悬赏",
+                "enablePullDownRefresh": false
+            }
+
+        }
+        ,{
+            "path" : "pages/pushList/pushList",
+            "style" :
+            {
+                "navigationBarTitleText": "内推列表",
+                "enablePullDownRefresh": false
+            }
+
+        }
+        ,{
+            "path" : "pages/choose/choose",
+            "style" :
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
@@ -96,7 +134,7 @@
 		}]
 	},
 	"condition": { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式（list 的索引项）
+		"current": 2, //当前激活的模式（list 的索引项）
 		"list": [{
 				"name": "login", //模式名称
 				"path": "pages/login/login", //启动页面，必选
@@ -119,6 +157,11 @@
 			{
 				"name": "历史反馈", //模式名称
 				"path": "pages/history-feedback/history-feedback", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name":"interpolation",
+				"path":"pages/interpolation/interpolation",
 				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
 			}
 		]
