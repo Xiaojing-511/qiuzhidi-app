@@ -9,7 +9,7 @@
 			 :show-bar='false' font-size="30" class="tabs" active-color='#333333' inactive-color='#999999'></u-tabs>
 		</view>
 		<view class="comp_list ">
-			<view v-for="(item,index) in innerList.list" :key="item.companyId" @click="goDetail" class="detail-circulate" v-show="current==0">
+			<view v-for="(item,index) in innerList.list" :key="item.companyId"  class="detail-circulate" v-show="current==0">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -32,7 +32,7 @@
 					</li>
 				</ul>
 			</view>
-			<view v-for="(item,index) in shcoolList.list" :key="item.companyId" @click="goDetail" class="detail-circulate"
+			<view v-for="(item,index) in shcoolList.list" :key="item.companyId"  class="detail-circulate"
 			 v-show="current==1">
 				<ul>
 					<li class='detail-title'>
@@ -56,7 +56,7 @@
 					</li>
 				</ul>
 			</view>
-			<view v-for="(item,index) in socialList.list" :key="item.companyId" @click="goDetail" class="detail-circulate"
+			<view v-for="(item,index) in socialList.list" :key="item.companyId"  class="detail-circulate"
 			 v-show="current==2">
 				<ul>
 					<li class='detail-title'>
@@ -106,16 +106,18 @@
 				innerList: {
 					list: [],
 					isFinsh: true,
-
+					isAgain: true,
 				},
 				shcoolList: {
 					list: [],
 					isFinsh: true,
+					isAgain: true,
 
 				},
 				socialList: {
 					list: [],
 					isFinsh: true,
+					isAgain: true,
 
 				},
 			}
@@ -133,6 +135,9 @@
 						this.searchList.list = res.list
 						this.searchList.totalPage = res.totalPage
 						this.searchList.pageNum = 1
+						this.innerList.isAgain=true
+						this.shcoolList.isAgain=true
+						this.socialList.isAgain=true
 						this.getTab()
 					})
 				}
@@ -149,8 +154,9 @@
 							return value
 						}
 					})
-					if (this.innerList.list.length < 4) {
+					if (this.innerList.list.length < 4 && this.innerList.isAgain) {
 						this.upData()
+						this.innerList.isAgain=false
 					}
 				} else if (this.current == 1) {
 					this.shcoolList.list = this.searchList.list.filter((value) => {
@@ -158,8 +164,9 @@
 							return value
 						}
 					})
-					if (this.shcoolList.list.length < 4) {
+					if (this.shcoolList.list.length < 4 && this.shcoolList.isAgain) {
 						this.upData()
+						this.shcoolList.isAgain=false
 					}
 				} else if (this.current == 2) {
 					this.socialList.list = this.searchList.list.filter((value) => {
@@ -167,8 +174,9 @@
 							return value
 						}
 					})
-					if (this.socialList.list.length < 4) {
+					if (this.socialList.list.length < 4 && this.socialList.isAgain) {
 						this.upData()
+						this.socialList.isAgain=false
 					}
 				}
 				console.log(this.innerList.list)
