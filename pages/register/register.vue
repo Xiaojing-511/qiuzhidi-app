@@ -109,6 +109,7 @@
 						authCode:this.code
 					}).then((res) => {
 						console.log(res)
+						this.showToast('注册成功','success')
 						uni.navigateTo({
 									url: '../login/login'
 							 	})

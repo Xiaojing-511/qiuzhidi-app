@@ -9,7 +9,7 @@
 				 :placeholder-style="input_style" />
 			</view>
 			<view class=" u-flex u-row-between  u-m-t-20 ">
-				<navigator class="link " url="../fgtPassword/fgtPassword">忘记密码</navigator>
+				<navigator class="link " url="../fgtPassword/fgtPassword">忘记密码?</navigator>
 				<navigator class="link " url="../register/register">去注册</navigator>
 			</view>
 			<u-button @click="login" :custom-style="customStyle" shape="circle">登录</u-button>
@@ -64,7 +64,10 @@
 						this.$u.vuex('vuex_token', res.token)
 						console.log(this.vuex_token)
 						// 返回原本所在页面
-						uni.navigateBack()
+						uni.navigateTo({
+							url:'../home/home'
+						})
+						// uni.navigateBack()
 					}).catch(res => {
 						this.showToast(res.message, 'error')
 						console.log(res)
@@ -98,7 +101,7 @@
 
 			.link {
 				color: white;
-				font-size: $font_general_small;
+				font-size: 24rpx;
 			}
 		}
 
