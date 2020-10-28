@@ -4,6 +4,10 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/home/home",
+			"style": {}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页"
@@ -22,51 +26,95 @@
 		}, {
 			"path": "pages/switchIdentity/switchIdentity",
 			"style": {}
+		},
+		{
+			"path": "pages/wode/wode",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/feedback/feedback",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "我的反馈"
+			}
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTextStyle": "black"
+			}
+		}, {
+			"path": "pages/myDistribution/myDistribution",
+			"style": {}
+		},
+		{
+			"path": "pages/history-feedback/history-feedback",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "历史反馈"
+			}
+		},
+		{
+			"path": "pages/fgtPassword/fgtPassword",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "找回密码",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
 		}
 	    ,{
             "path" : "pages/interpolation/interpolation",
-            "style" :                                                                                    
+            "style" :
             {
                 "navigationBarTitleText": "内推",
 				"navigationBarBackgroundColor": "#FFFFFF",
 				"navigationBarTextStyle": "black"
 				// "backgroundColor":"#EEEEEE"
             }
-            
+
         }
         ,{
             "path" : "pages/issueInterpolation/issueInterpolation",
-            "style" :                                                                                    
+            "style" :
             {
                 "navigationBarTitleText": "发布内推悬赏",
                 "enablePullDownRefresh": false
             }
-            
+
         }
         ,{
             "path" : "pages/pushList/pushList",
-            "style" :                                                                                    
+            "style" :
             {
                 "navigationBarTitleText": "内推列表",
                 "enablePullDownRefresh": false
             }
-            
+
         }
         ,{
             "path" : "pages/choose/choose",
-            "style" :                                                                                    
+            "style" :
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
+
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
 		"navigationBarBackgroundColor": "#00A8FF",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance":50
 	},
 	"tabBar": {
 		"color": "#909399",
@@ -88,18 +136,34 @@
 	"condition": { //模式配置，仅开发期间生效
 		"current": 2, //当前激活的模式（list 的索引项）
 		"list": [{
-			"name": "login", //模式名称
-			"path": "pages/login/login", //启动页面，必选
-			"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-		}, {
-			"name": "switchIdentity", //模式名称
-			"path": "pages/switchIdentity/switchIdentity", //启动页面，必选
-			"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-		},
-		{
-			"name":"interpolation",
-			"path":"pages/interpolation/interpolation",
-			"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-		}]
+				"name": "login", //模式名称
+				"path": "pages/login/login", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			}, {
+				"name": "switchIdentity", //模式名称
+				"path": "pages/switchIdentity/switchIdentity", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name": "我的", //模式名称
+				"path": "pages/wode/wode", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name": "我的反馈", //模式名称
+				"path": "pages/feedback/feedback", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name": "历史反馈", //模式名称
+				"path": "pages/history-feedback/history-feedback", //启动页面，必选
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name":"interpolation",
+				"path":"pages/interpolation/interpolation",
+				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+			}
+		]
 	}
 }

@@ -44,7 +44,7 @@ export default {
 	},
 	onLoad() {
 		this.getMassage();
-		console.log(this.msgList);
+		// console.log(this.msgList);
 	},
 	methods: {
 		getMassage() {
@@ -52,15 +52,17 @@ export default {
 			this.$u
 				.get('/ipl/list', {})
 				.then(res => {
-					console.log(res);
-					console.log(this);
-					var textList = [];
+					// console.log(res);
+					// console.log(this);
+					// var textList = [];
 					// this.msgList = res.umsInterpolate;
 
 					for (var i = 0; i < res.length; i++) {
-						this.textList[i] = res[i].umsInterpolate;
+						// this.textList[i] = res[i].umsInterpolate;
+						this.msgList[i] = res[i].umsInterpolate;
 					}
-					this.msgList = textList;
+					// this.msgList = textList;
+					console.log(this.msgList);
 				})
 				.catch(err => {
 					console.log(err);

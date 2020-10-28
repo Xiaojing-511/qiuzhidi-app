@@ -7,7 +7,7 @@
 					企业名称:
 				</view>
 				<u-input class="company-name-input" v-model="company" placeholder="可多选" placeholder-style="color:#999999; font-size:24rpx; font-family:PingFangSC-Regular;font-weight:Regular"></u-input>
-				<u-tag class="company-tag" closeable @close="clickCompanyTag(item,index)" v-for="(item,index) in companies" :text="companies[index]"></u-tag>
+				<u-tag class="company-tag " closeable @close="clickCompanyTag(item,index)" v-for="(item,index) in companies" :text="companies[index]"></u-tag>
 				<view class="company-name-right" @click="addCompany">
 					添加
 				</view>
@@ -144,6 +144,10 @@
 </script>
 
 <style>
+	page{
+		padding: 0;
+		margin: 0;
+	}
 	.content{
 		width: 750rpx;
 		height: 1447rpx;
@@ -239,7 +243,10 @@
 		opacity: 0.5;
 	}
 	.company-tag,.postion-tag{
+		padding: 10rpx;
+		font-size: 20rpx;
 		width: 100rpx;
 		height: 100%;
+		margin-top: 20rpx;
 	}
 </style>
