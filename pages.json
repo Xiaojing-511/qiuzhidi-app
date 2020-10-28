@@ -5,7 +5,9 @@
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/home/home",
-			"style": {}
+			"style": {
+				"onReachBottomDistance": 100
+			}
 		},
 		{
 			"path": "pages/index/index",
@@ -39,6 +41,17 @@
 			"style": {
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "我的反馈"
+			}
+		}, {
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"onReachBottomDistance": 20
+			}
+		}, {
+			"path": "pages/myDistribution/myDistribution",
+			"style": {
+				"onReachBottomDistance": 100
 			}
 		},
 		{

@@ -1,11 +1,11 @@
 <template>
-	<view>
-		<view>
+	<view class="content">
+		<view class="tab-box">
 			<u-tabs :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>
 		</view>
 		<view class="content">
 			<view v-show="current === 0">
-				<ul v-for="(item,index) in interview.list" :key="item.id">
+				<ul v-for="(item,index) in interview.list" :key="item.id" class='detail-block'>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
 						<span>{{item.recruitSalary}}</span>
@@ -29,7 +29,7 @@
 
 			</view>
 			<view v-show="current === 1">
-				<ul v-for="(item,index) in recruit.list" :key="item.id">
+				<ul v-for="(item,index) in recruit.list" :key="item.id" class='detail-block'>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
 						<span>{{item.recruitSalary}}</span>
@@ -52,7 +52,7 @@
 				</ul>
 			</view>
 		</view>
-		<button class="btn">再发一条</button>
+		<button class="btn" @click="postAgain">再发一条</button>
 
 	</view>
 </template>
@@ -100,7 +100,7 @@
 					this.interview.isFirst=false
 				}else if(this.current == 1 && this.recruit.isFirst){
 					this.getRecruit()
-					this.interview.isFirst=false
+					this.recruit.isFirst=false
 				}
 			},
 			upData() {
@@ -141,14 +141,45 @@
 						console.log(this.recruit.list)
 					})
 				}
-
+			},
+			postAgain(){
+				if(this.current==0){
+					
+				}
+				if(this.current==1){
+					
+				}
 			}
 		}
 	}
 </script>
 
 <style>
+	.content{
+		width: 100%;
+	}
 .btn{
+	position: fixed;
+	bottom: 100rpx;
+	left: 260rpx;
+	z-index: 9;
+	background-color:#007AFF;
 	
+}
+.detail-block{
+	margin-bottom: 20rpx;
+	background-color: #C8C9CC;
+	height: 300rpx;
+	
+}
+.detail-imgs{
+width: 100rpx;
+height: 100rpx;
+}
+.detail-imgs-box{
+	display: flex;
+}
+.tab-box{
+	width: 50%;
 }
 </style>
