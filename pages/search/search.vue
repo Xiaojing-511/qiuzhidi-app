@@ -2,64 +2,15 @@
 	<view class="content">
 		<view>
 			<u-search shape="round" :clearabled="false" :animation="false" :show-action="false" height="64" placeholder="请输入工作或公司"
-			 v-model="searchWord" bg-color='#F2F2F2' @search="search"></u-search>
+			 v-model="searchWord" bg-color='#F2F2F2' @click="goSearchDetail" :disabled="true"></u-search>
 		</view>
 		<view class="tab-box ">
 			<u-tabs name="cate_name" count="cate_count" :list="list" :is-scroll="false" :current="current" @change="change"
 			 :show-bar='false' font-size="30" class="tabs" active-color='#333333' inactive-color='#999999'></u-tabs>
 		</view>
 		<view class="comp_list ">
-			<view v-for="(item,index) in innerList.list" :key="item.companyId"  class="detail-circulate" v-show="current==0">
-				<u-empty text="所谓伊人，在水一方" mode="list"></u-empty>
-				<ul>
-					<li class='detail-title'>
-						<text>{{item.recruitName}}</text>
-						<span>{{item.recruitSalary}}</span>
-					</li>
-					<li class='detail-timer'>
-						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
-					</li>
-					<li class='detail-imgs-box'>
-						<image :src="'http://www.qingmengtech.com:8083/'+item.companyLogo" mode="" class="detail-imgs"></image>
-						<view class="detail-name">
-							<view class="detail-name_text">
-								<text>{{item.companyName}}</text>
-							</view>
-							<view class="detail-name_span">
-								<span>{{item.skillRequired}}</span>
-							</view>
-						</view>
-					</li>
-				</ul>
-			</view>
-			<view v-for="(item,index) in shcoolList.list" :key="item.companyId"  class="detail-circulate"
-			 v-show="current==1">
-			 <u-empty text="所谓伊人，在水一方" mode="list"></u-empty>
-				<ul>
-					<li class='detail-title'>
-						<text>{{item.recruitName}}</text>
-						<span>{{item.recruitSalary}}</span>
-					</li>
-					<li class='detail-timer'>
-						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
-					</li>
-					<li class='detail-imgs-box'>
-						<image :src="'http://www.qingmengtech.com:8083/'+item.companyLogo" mode="" class="detail-imgs"></image>
-						<view class="detail-name">
-							<view class="detail-name_text">
-								<text>{{item.companyName}}</text>
-							</view>
-							<view class="detail-name_span">
-								<span>{{item.skillRequired}}</span>
-							</view>
-						</view>
-					</li>
-				</ul>
-			</view>
-			<view v-for="(item,index) in socialList.list" :key="item.companyId"  class="detail-circulate"
-			 v-show="current==2">
+			<u-empty text="搜索内容为空" mode="search" :show='isEmpty'></u-empty>
+			<view v-for="(item,index) in searchList.list" :key="item.companyId" class="detail-circulate" >
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -83,11 +34,18 @@
 				</ul>
 			</view>
 		</view>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
 <script>
 	export default {
+		onLoad(option) { //option为object类型，会序列化上个页面传递的参数
+		        console.log(option.name); //打印出上个页面传递的参数。
+				this.searchWord=option.name
+				this.search()
+				
+		    },
 		data() {
 			return {
 				searchWord: '',
@@ -99,6 +57,7 @@
 					cate_name: '社招'
 				}],
 				current: 0,
+				isEmpty: false,
 				searchList: {
 					list: [],
 					isFinsh: true,
@@ -131,76 +90,53 @@
 			search() {
 				if (this.searchWord != 0) {
 					this.$u.post('http://47.94.151.232:8083/esRecruit/search/simple', {
-						keyword: this.searchWord
+						keyword: this.searchWord,
+						type: this.current
 					}).then((res) => {
 						console.log(res)
 						this.searchList.list = res.list
 						this.searchList.totalPage = res.totalPage
 						this.searchList.pageNum = 1
-						this.innerList.isAgain=true
-						this.shcoolList.isAgain=true
-						this.socialList.isAgain=true
-						this.getTab()
+						if (res.list.length == 0) {
+							this.isEmpty = true
+						}
 					})
 				}
 			},
 			change(index) {
 				this.current = index;
 				console.log(this.current);
-				this.getTab()
+				this.search()
 			},
-			getTab() {
-				if (this.current == 0) {
-					this.innerList.list = this.searchList.list.filter((value) => {
-						if (value.type == 0) {
-							return value
-						}
-					})
-					if (this.innerList.list.length < 4 ) {
-						this.upData()
-						
-					}
-				} else if (this.current == 1) {
-					this.shcoolList.list = this.searchList.list.filter((value) => {
-						if (value.type == 1) {
-							return value
-						}
-					})
-					if (this.shcoolList.list.length < 4 ) {
-						this.upData()
-						
-					}
-				} else if (this.current == 2) {
-					this.socialList.list = this.searchList.list.filter((value) => {
-						if (value.type == 2) {
-							return value
-						}
-					})
-					if (this.socialList.list.length < 4 ) {
-						this.upData()
-						
-					}
-				}
-				console.log(this.innerList.list)
-				console.log(this.shcoolList.list)
-				console.log(this.socialList.list)
-
+			goSearchDetail(){
+				uni.navigateTo({
+					url:'../searchDetail/searchDetail?name='+this.searchWord
+				})
 			},
 			upData() {
 				console.log(this.searchList.pageNum)
 				console.log(this.searchList.pageNum != this.searchList.totalPage)
+
+				if (this.searchList.pageNum == this.searchList.totalPage) {
+					this.$refs.uToast.show({
+						title: '没有更多内容咯',
+						type: 'warning',
+						position: 'top'
+					})
+				}
 				if (this.searchList.pageNum != this.searchList.totalPage && this.searchList.isFinsh) {
 					this.searchList.isFinsh = false
 					this.searchList.pageNum++;
 					this.$u.post('http://47.94.151.232:8083/esRecruit/search/simple', {
 						keyword: this.searchWord,
+						type: this.current,
 						pageNum: this.searchList.pageNum
 					}).then((res) => {
 						this.searchList.isFinsh = true
 						this.searchList.list = this.searchList.list.concat(res.list)
 						console.log(this.searchList.list)
 						console.log(res)
-						this.getTab()
+
 					})
 				}
 			}
@@ -270,6 +206,11 @@
 
 	.detail-name {
 		margin-bottom: 40rpx;
+	}
+
+	.enmpty {
+		
+		margin: 300rpx auto;
 	}
 
 	.tabs {
