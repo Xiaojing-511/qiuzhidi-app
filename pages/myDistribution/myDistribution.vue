@@ -3,7 +3,7 @@
 		<view class="tab-box">
 			<u-tabs :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>
 		</view>
-		<view class="content">
+		<view >
 			<view v-show="current === 0">
 				<ul v-for="(item,index) in interview.list" :key="item.id" class='detail-block'>
 					<li class='detail-title'>
@@ -158,6 +158,8 @@
 <style>
 	.content{
 		width: 100%;
+		background-color: #EEEEEEEE;
+		/* margin:0 30rpx; */
 	}
 .btn{
 	position: fixed;
@@ -167,10 +169,14 @@
 	background-color:#007AFF;
 	
 }
+.detail{
+	
+}
 .detail-block{
-	margin-bottom: 20rpx;
-	background-color: #C8C9CC;
+	margin-top: 30rpx;
+	background-color: #FFFFFF;
 	height: 300rpx;
+	padding: 0 30rpx;
 	
 }
 .detail-imgs{
