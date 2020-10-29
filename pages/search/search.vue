@@ -154,9 +154,9 @@
 							return value
 						}
 					})
-					if (this.innerList.list.length < 4 && this.innerList.isAgain) {
+					if (this.innerList.list.length < 4 ) {
 						this.upData()
-						this.innerList.isAgain=false
+						
 					}
 				} else if (this.current == 1) {
 					this.shcoolList.list = this.searchList.list.filter((value) => {
@@ -164,9 +164,9 @@
 							return value
 						}
 					})
-					if (this.shcoolList.list.length < 4 && this.shcoolList.isAgain) {
+					if (this.shcoolList.list.length < 4 ) {
 						this.upData()
-						this.shcoolList.isAgain=false
+						
 					}
 				} else if (this.current == 2) {
 					this.socialList.list = this.searchList.list.filter((value) => {
@@ -174,9 +174,9 @@
 							return value
 						}
 					})
-					if (this.socialList.list.length < 4 && this.socialList.isAgain) {
+					if (this.socialList.list.length < 4 ) {
 						this.upData()
-						this.socialList.isAgain=false
+						
 					}
 				}
 				console.log(this.innerList.list)

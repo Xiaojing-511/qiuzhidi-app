@@ -7,8 +7,8 @@
 			<view v-show="current === 0">
 				<ul v-for="(item,index) in interview.list" :key="item.id" class='detail-block'>
 					<li class='detail-title'>
-						<text>{{item.recruitName}}</text>
-						<span>{{item.recruitSalary}}</span>
+						<text>{{item.interviewPosition}}</text>
+						<span>{{item.interviewPrice}}</span>
 					</li>
 					<li class='detail-timer'>
 						<span>{{item.recruitWorkspace}}</span>
@@ -114,8 +114,8 @@
 			getInterview() {
 				if (this.interview.isFinsh) {
 					this.interview.isFinsh = false
-					this.$u.post('/recruit/information', {
-						type: this.current,
+					this.$u.get('/interviewer/guidance', {
+						type: this.current+1,
 						pageNum: this.interview.pageNum
 					}).then((res) => {
 						this.interview.isFinsh = true;
@@ -130,14 +130,15 @@
 			getRecruit() {
 				if (this.recruit.isFinsh) {
 					this.recruit.isFinsh=false;
-					this.$u.post('/recruit/information', {
-						type: this.current,
+					this.$u.get('/interviewer/guidance', {
+						type: this.current+1,
 						pageNum: this.recruit.pageNum
 					}).then((res) => {
 						this.recruit.isFinsh = true;
 						this.recruit.pageNum++;
 						this.recruit.list = this.recruit.list.concat(res.list);
 						this.recruit.isLast = res.isLastPage
+						console.log(res)
 						console.log(this.recruit.list)
 					})
 				}
@@ -180,6 +181,6 @@ height: 100rpx;
 	display: flex;
 }
 .tab-box{
-	width: 50%;
+	width: ;
 }
 </style>
