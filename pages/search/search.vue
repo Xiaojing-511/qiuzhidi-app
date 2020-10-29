@@ -10,6 +10,7 @@
 		</view>
 		<view class="comp_list ">
 			<view v-for="(item,index) in innerList.list" :key="item.companyId"  class="detail-circulate" v-show="current==0">
+				<u-empty text="所谓伊人，在水一方" mode="list"></u-empty>
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -34,6 +35,7 @@
 			</view>
 			<view v-for="(item,index) in shcoolList.list" :key="item.companyId"  class="detail-circulate"
 			 v-show="current==1">
+			 <u-empty text="所谓伊人，在水一方" mode="list"></u-empty>
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
