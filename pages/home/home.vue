@@ -288,7 +288,7 @@
 			goSearch(){
 				console.log('111')
 				uni.navigateTo({
-					url: '../search/search'
+					url: '../searchDetail/searchDetail'
 				})
 			}
 
