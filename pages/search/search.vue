@@ -10,7 +10,7 @@
 		</view>
 		<view class="comp_list ">
 			<u-empty text="搜索内容为空" mode="search" :show='isEmpty'></u-empty>
-			<view v-for="(item,index) in searchList.list" :key="item.companyId" class="detail-circulate" >
+			<view v-for="(item,index) in searchList.list" :key="item.companyId" class="detail-circulate">
 				<ul>
 					<li class='detail-title'>
 						<text>{{item.recruitName}}</text>
@@ -18,7 +18,7 @@
 					</li>
 					<li class='detail-timer'>
 						<span>{{item.recruitWorkspace}}</span>
-						<span>{{item.releaseDate}}</span>
+						<span>{{item.releaseDate.slice(0,10)}}</span>
 					</li>
 					<li class='detail-imgs-box'>
 						<image :src="'http://www.qingmengtech.com:8083/'+item.companyLogo" mode="" class="detail-imgs"></image>
@@ -35,19 +35,29 @@
 			</view>
 		</view>
 		<u-toast ref="uToast" />
+		<u-back-top :scrollTop="scrollTop" :mode="mode" :icon-style="iconStyle" bottom="0"></u-back-top>
 	</view>
 </template>
 
 <script>
 	export default {
 		onLoad(option) { //option为object类型，会序列化上个页面传递的参数
-		        console.log(option.name); //打印出上个页面传递的参数。
-				this.searchWord=option.name
-				this.search()
-				
-		    },
+			console.log(option.name); //打印出上个页面传递的参数。
+			this.searchWord = option.name
+			this.search()
+
+		},
+		onPageScroll(e) {
+				this.scrollTop = e.scrollTop;
+			},
 		data() {
 			return {
+				scrollTop: 0,
+				mode: 'square',
+				iconStyle: {
+					fontSize: '32rpx',
+					color: '#2979ff'
+				},
 				searchWord: '',
 				list: [{
 					cate_name: '实习'
@@ -79,7 +89,6 @@
 					list: [],
 					isFinsh: true,
 					isAgain: true,
-
 				},
 			}
 		},
@@ -88,8 +97,9 @@
 		},
 		methods: {
 			search() {
+				this.isEmpty = false
 				if (this.searchWord != 0) {
-					this.$u.post('http://47.94.151.232:8083/esRecruit/search/simple', {
+					this.$u.get('http://47.94.151.232:8083/esRecruit/search', {
 						keyword: this.searchWord,
 						type: this.current
 					}).then((res) => {
@@ -108,9 +118,9 @@
 				console.log(this.current);
 				this.search()
 			},
-			goSearchDetail(){
+			goSearchDetail() {
 				uni.navigateTo({
-					url:'../searchDetail/searchDetail?name='+this.searchWord
+					url: '../searchDetail/searchDetail?name=' + this.searchWord
 				})
 			},
 			upData() {
@@ -127,7 +137,7 @@
 				if (this.searchList.pageNum != this.searchList.totalPage && this.searchList.isFinsh) {
 					this.searchList.isFinsh = false
 					this.searchList.pageNum++;
-					this.$u.post('http://47.94.151.232:8083/esRecruit/search/simple', {
+					this.$u.get('http://47.94.151.232:8083/esRecruit/search', {
 						keyword: this.searchWord,
 						type: this.current,
 						pageNum: this.searchList.pageNum
@@ -148,6 +158,7 @@
 	.content {
 		width: 100%;
 		padding: 0 30rpx;
+		
 	}
 
 	.detail-title {
@@ -209,7 +220,7 @@
 	}
 
 	.enmpty {
-		
+
 		margin: 300rpx auto;
 	}
 
