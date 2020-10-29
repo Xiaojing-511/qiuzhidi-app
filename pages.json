@@ -47,7 +47,13 @@
 			}
 		}, {
 			"path": "pages/myDistribution/myDistribution",
-			"style": {}
+			"style": {
+				"style": {
+					"navigationBarTitleText": "我的发布",
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#FFFFFF"
+				}
+			}
 		},
 		{
 			"path": "pages/history-feedback/history-feedback",
