@@ -95,6 +95,14 @@
 			}
 		},
 		{
+			"path": "pages/interviewer_info/interviewer_info",
+			"style": {
+				"navigationBarTitleText": "面试官详情",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
 			"path": "pages/pushList/pushList",
 			"style": {
 				"navigationBarTitleText": "内推列表",
