@@ -69,52 +69,53 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		}
-	    ,{
-            "path" : "pages/interpolation/interpolation",
-            "style" :
-            {
-                "navigationBarTitleText": "内推",
+		}, {
+			"path": "pages/interpolation/interpolation",
+			"style": {
+				"navigationBarTitleText": "内推",
 				"navigationBarBackgroundColor": "#FFFFFF",
 				"navigationBarTextStyle": "black"
 				// "backgroundColor":"#EEEEEE"
-            }
+			}
 
-        }
-        ,{
-            "path" : "pages/issueInterpolation/issueInterpolation",
-            "style" :
-            {
-                "navigationBarTitleText": "发布内推悬赏",
-                "enablePullDownRefresh": false
-            }
+		}, {
+			"path": "pages/issueInterpolation/issueInterpolation",
+			"style": {
+				"navigationBarTitleText": "发布内推悬赏",
+				"enablePullDownRefresh": false
+			}
 
-        }
-        ,{
-            "path" : "pages/pushList/pushList",
-            "style" :
-            {
-                "navigationBarTitleText": "内推列表",
-                "enablePullDownRefresh": false
-            }
+		},
+		{
+			"path": "pages/interviewer_editor/interviewer_editor",
+			"style": {
+				"navigationBarTitleText": "面试官编辑",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/pushList/pushList",
+			"style": {
+				"navigationBarTitleText": "内推列表",
+				"enablePullDownRefresh": false
+			}
 
-        }
-        ,{
-            "path" : "pages/choose/choose",
-            "style" :
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
+		}, {
+			"path": "pages/choose/choose",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
 
-        }
-    ],
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
 		"navigationBarBackgroundColor": "#00A8FF",
 		"backgroundColor": "#F8F8F8",
-		"onReachBottomDistance":50
+		"onReachBottomDistance": 50
 	},
 	"tabBar": {
 		"color": "#909399",
@@ -160,8 +161,8 @@
 				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
 			},
 			{
-				"name":"interpolation",
-				"path":"pages/interpolation/interpolation",
+				"name": "interpolation",
+				"path": "pages/interpolation/interpolation",
 				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
 			}
 		]
