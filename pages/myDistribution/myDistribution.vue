@@ -268,7 +268,7 @@
 	.detail-name_span {
 		margin-top: 20rpx;
 		font-size: 24rpx;
-
+		font-weight: 400;
 	}
 
 	.detial-companyName {
