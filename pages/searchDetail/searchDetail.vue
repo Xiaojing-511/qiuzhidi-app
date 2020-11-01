@@ -80,7 +80,7 @@
 				});
 			},
 			loadHotlist() {
-				this.hotKeywordList = ['11', '222', '3333']
+				this.hotKeywordList = ['java', '前端', '滴滴']
 			},
 			//保存搜索历史的方法
 			saveKeyword(keyword) {
