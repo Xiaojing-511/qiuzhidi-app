@@ -73,23 +73,7 @@
 					isFinsh: true,
 					totalPage: 1,
 					pageNum: 1,
-				},
-				innerList: {
-					list: [],
-					isFinsh: true,
-					isAgain: true,
-				},
-				shcoolList: {
-					list: [],
-					isFinsh: true,
-					isAgain: true,
-
-				},
-				socialList: {
-					list: [],
-					isFinsh: true,
-					isAgain: true,
-				},
+				}
 			}
 		},
 		onReachBottom() {
