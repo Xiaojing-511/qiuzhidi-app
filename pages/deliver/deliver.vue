@@ -194,7 +194,6 @@
 			this.$u.post('dfb/totalOfStatus')
 					.then(res => {
 						// console.log(res);
-						// console.log(typeof res);
 						for (let item in res) {
 							this.list[item].totalNum = res[item];
 						}
