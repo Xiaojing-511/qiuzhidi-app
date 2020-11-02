@@ -84,10 +84,16 @@
 					uni.request({
 						url: 'http:47.99.121.209:8093/feedback/submitFeedback',
 						method: 'POST',
+						header: {
+						   'content-type': 'application/json',
+						   Authorization: `Bearer` + uni.getStorageSync('token')
+						},
 						data: {
 							feedbackTypeId: this.value,
+							feedbackImg:'',
 							feedbackDetails: this.txt,
 							phone: this.mobile
+							
 						},
 						success: res => {
 							uni.showToast({
