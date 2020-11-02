@@ -193,6 +193,7 @@
 			// console.log(this.vuex_token);
 			this.$u.post('dfb/totalOfStatus')
 					.then(res => {
+						// console.log(res);
 						for (let item in res) {
 							this.list[item].totalNum = res[item];
 						}
