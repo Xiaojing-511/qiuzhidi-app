@@ -125,6 +125,15 @@
             "path" : "pages/searchDetail/searchDetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/deliver/deliver",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
