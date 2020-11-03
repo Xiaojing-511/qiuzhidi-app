@@ -125,6 +125,15 @@
             "path" : "pages/searchDetail/searchDetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/deliver/deliver",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "投递反馈",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -143,7 +152,14 @@
 			"iconPath": "static/index.png",
 			"selectedIconPath": "static/index-selected.png",
 			"text": "首页"
-		}, {
+		},
+			{
+				"pagePath": "pages/deliver/deliver",
+				"iconPath": "static/deliver.png",
+				"selectedIconPath": "static/deliver-selected.png",
+				"text": "投递"
+			},
+			{
 			"pagePath": "pages/center/index",
 			"iconPath": "static/center.png",
 			"selectedIconPath": "static/center-selected.png",

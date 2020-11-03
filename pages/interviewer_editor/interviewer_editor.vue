@@ -3,8 +3,7 @@
 		<view class="iner_box">
 
 			<view class="head_img">
-				<u-upload ref="uUpload"  :max-count='1' width='120rpx' height="120rpx" 
-				 :file-list="fileList" :before-upload="beforeUpload"></u-upload>
+				<u-upload ref="uUpload" :max-count='1' width='120rpx' height="120rpx" :file-list="fileList" :before-upload="beforeUpload"></u-upload>
 			</view>
 			<view class="first_box">
 				<view class="tip_text">
@@ -43,10 +42,15 @@
 					<textarea class="text-area" v-model="focus" cols="" rows="" style="vertical-align:top;outline:none;"></textarea>
 				</view>
 
-				<view class="btn_box">
-					<button class="btn" @click="postInfo">提交</button>
+				<view class="btn">
+					<u-button :custom-style="customStyle1" size="default" @click="reload" type="default">以后再填</u-button>
+
+					<u-button :custom-style="customStyle2" size="default" @click="postInfo" type="primary">发布</u-button>
+
 				</view>
+
 			</view>
+			<u-toast ref="uToast" />
 		</view>
 
 	</view>
@@ -65,7 +69,20 @@
 				workExperience: '',
 				focus: '',
 				fileList: [],
-			
+
+
+				customStyle1: {
+					marginLeft: '25rpx',
+					paddingLeft: '90rpx',
+					paddingRight: '90rpx',
+				},
+
+				customStyle2: {
+					marginLeft: '20rpx',
+					paddingLeft: '120rpx',
+					paddingRight: '120rpx',
+				},
+
 
 			}
 		},
@@ -91,10 +108,10 @@
 					header: {
 						Authorization: `Bearer` + that.vuex_token
 					},
-					success: (res) => {						
+					success: (res) => {
 						that.icon = JSON.parse(res.data).data
 						console.log(that.icon)
-						
+
 					}
 				})
 			},
@@ -137,11 +154,30 @@
 					focus: this.focus,
 
 				}).then((res) => {
-					
 
+					this.showToasts('发布成功')
+				}).catch((err) => {
+					this.showToasts('请求失败')
 				})
 			},
 
+			showToasts(msg, type = 'warning') {
+				this.$refs.uToast.show({
+					title: msg,
+					type: type,
+					position: 'top'
+				})
+			},
+
+			reload(){
+				console.log('ss')
+				uni.redirectTo({
+					url:'/pages/interviewer_editor/interviewer_editor',
+				// uni.navigator({
+				
+				// })
+				})
+			},
 
 
 		}
@@ -208,5 +244,23 @@
 
 	.upld {
 		display: flex;
+	}
+
+	.btn {
+		display: flex;
+	}
+
+	button {
+		// margin-left: 0rpx;
+		// margin-right: 0rpx;
+		// padding-left: 150rpx;
+		// padding-right: 150rpx;
+		// line-height: ;
+	}
+
+	.btn1 .btn2 {
+
+		width: 300rpx;
+		height: 100%;
 	}
 </style>
