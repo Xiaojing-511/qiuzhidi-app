@@ -3,16 +3,17 @@
 		<view class="top">
 			<view class="personal-information">
 				<view class="name">
-					<u-input :placeholder-style=placeholderStyle v-model="name" placeholder="名字" disabled="true" />
-					<u-input @click="goInformation" placeholder="查看并修改个人信息 >" disabled="true" />
+					<u-input v-model="name"  :custom-style="{fontSize:' 50rpx'}"  placeholder-style="font-size: 50rpx" disabled="true"/>
+					<u-input @click="goInformation" placeholder="查看并修改个人信息>" disabled="true" />
 				</view>
 				<view class="avatar">
 					<u-avatar :src="src" size="large" @click="goAavatar"></u-avatar>
 				</view>
 			</view>
 			<view>
-				<u-modal v-model="show" show-cancel-button @confirm="confirm">
-					<u-input v-model="content" input-align="center" />
+				<u-modal v-model="show" title=" " show-cancel-button @confirm="confirm" >
+					<!-- <u-input v-model="content" input-align="center" /> -->
+					<u-field v-model="content" placeholder="请输入你要修改的昵称"	></u-field>
 				</u-modal>
 			</view>
 			<view class="goTome">
@@ -36,7 +37,7 @@
 					<span>意见反馈与帮助</span>
 				</li>
 				<u-line color="#e6e3e3" length="95%" />
-				<li @click="goNews">
+				<li @click="goDistribution">
 					<i class="iconfont icon-svg"></i>
 					<span>我的发布</span>
 				</li>
@@ -65,10 +66,9 @@
 			return {
 				src: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
 				id: 83,
-				name: '',
+				name: '李嘉申',
 				show: false,
-				content: '请修改你的昵称',
-				placeholderStyle: "font-size:50rpx;color:black"
+				content: ''
 			}
 		},
 		methods: {
@@ -77,12 +77,11 @@
 			},
 			confirm() {
 				this.$u.vuex('vuex_token',
-					"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHU5NTc3IiwiY3JlYXRlZCI6MTYwMzY5MDQyNjc5NiwiZXhwIjoxNjA0Mjk1MjI2fQ.LGnCuIZbrc8zAf2XC2AGlUJ2ZP6ay6VGMPecQTygFSPLtuQtHCKCHKTTsz7_HsBHs4QMlgTU3DkAknYQSrEqHw"
+					"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHU5NTc3IiwiY3JlYXRlZCI6MTYwNDI5NTcxNTY4MSwiZXhwIjoxNjA0OTAwNTE1fQ.SXm4oSIkJpfeP1t0gPJWthbU1_EjoI9_Km_DLfQOlsNzopDa_WIAwifT0w2tbKb9zETUvCGJgcYeEb5HnVOkbg"
 				)
 				this.$u.post(`http://47.99.121.209:8093/member/info/updateNickname/${this.id}`, {
 					nickname: this.content
 				}).then(res => {
-					console.log('1111');
 					this.name = this.content;
 					uni.showToast({
 						title: "修改成功",
@@ -91,19 +90,18 @@
 				});
 			},
 			goAavatar() {
-				this.$u.vuex('vuex_token',
-					"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHU5NTc3IiwiY3JlYXRlZCI6MTYwMzY5MDQyNjc5NiwiZXhwIjoxNjA0Mjk1MjI2fQ.LGnCuIZbrc8zAf2XC2AGlUJ2ZP6ay6VGMPecQTygFSPLtuQtHCKCHKTTsz7_HsBHs4QMlgTU3DkAknYQSrEqHw"
-				)
-				this.$u.post(`http://47.99.121.209:8093/member/info/updateIcon/${this.id}`, {
-					icon: this.id
-				}).then(res => {
-					console.log('1111');
-					this.name = this.content;
-					uni.showToast({
-						title: "修改成功",
-						duration: 2000,
-					});
-				});
+				// this.$u.vuex('vuex_token',
+				// 	"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHU5NTc3IiwiY3JlYXRlZCI6MTYwNDI5NTcxNTY4MSwiZXhwIjoxNjA0OTAwNTE1fQ.SXm4oSIkJpfeP1t0gPJWthbU1_EjoI9_Km_DLfQOlsNzopDa_WIAwifT0w2tbKb9zETUvCGJgcYeEb5HnVOkbg"
+				// )
+				// this.$u.post(`http://47.99.121.209:8093/member/info/updateIcon/${this.id}`, {
+				// 	icon: this.id
+				// }).then(res => {
+				// 	this.name = this.content;
+				// 	uni.showToast({
+				// 		title: "修改成功",
+				// 		duration: 2000,
+				// 	});
+				// });
 			},
 			goResume() {
 				this.$u.route('');
@@ -114,11 +112,11 @@
 			goOpinion() {
 				this.$u.route('pages/feedback/feedback');
 			},
-			goNews() {
-				this.$u.route('');
+			goDistribution() {
+				this.$u.route('pages/myDistribution/myDistribution');
 			},
 			goAbout() {
-				this.$u.route('');
+				this.$u.route('pages/');
 			},
 			changeStatus() {
 				this.$u.route('');
@@ -178,7 +176,6 @@
 
 				li {
 					height: 100rpx;
-
 					i {
 						line-height: 100rpx;
 						display: inline;
@@ -187,7 +184,7 @@
 
 					span {
 						font-size: 26rpx;
-						line-height: 100rpx;
+						
 					}
 				}
 
