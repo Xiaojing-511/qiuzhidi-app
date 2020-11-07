@@ -82,6 +82,7 @@
 						telephone: this.phone
 					}).then((res) => {
 						console.log(res);
+						this.showToast('发送成功', 'success')
 						this.isShow = false;
 						var times = setInterval(() => {
 							this.timer--;

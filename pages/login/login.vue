@@ -61,7 +61,7 @@
 					}).then((res) => {
 						// 将token存储在vuex中（用的uview优化过的写法，vuex_token字段配置了，可以直接存在了本地存储中）
 						
-						this.$u.vuex('vuex_token', res.token)
+						this.$u.vuex('vuex_token', res.data.token)
 						console.log(this.vuex_token)
 						// 返回原本所在页面
 						uni.navigateTo({

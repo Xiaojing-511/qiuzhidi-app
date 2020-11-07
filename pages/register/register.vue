@@ -70,6 +70,7 @@
 					}).then((res) => {
 						console.log(res);
 						this.isShow = false;
+						this.showToast('发送成功','success')
 						var times = setInterval(() => {
 							this.timer--;
 							if (this.timer < 1) {
@@ -110,9 +111,25 @@
 					}).then((res) => {
 						console.log(res)
 						this.showToast('注册成功','success')
-						uni.navigateTo({
-									url: '../login/login'
-							 	})
+						this.$u.post('/sso/login',
+						{
+							phone: this.phone, //17090888281
+							password: this.password, //123456
+							
+						}).then((res) => {
+							// 将token存储在vuex中（用的uview优化过的写法，vuex_token字段配置了，可以直接存在了本地存储中）
+							
+							this.$u.vuex('vuex_token', res.data.token)
+							console.log(this.vuex_token)
+							// 返回原本所在页面
+							uni.navigateTo({
+								url:'../home/home'
+							})
+							// uni.navigateBack()
+						}).catch(res => {
+							this.showToast(res.message, 'error')
+							console.log(res)
+						})
 					}).catch(res => {
 						console.log(res)
 						this.showToast(res.message, 'error')

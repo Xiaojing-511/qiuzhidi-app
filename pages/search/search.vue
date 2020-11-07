@@ -47,9 +47,6 @@
 			this.search()
 
 		},
-		onPageScroll(e) {
-				this.scrollTop = e.scrollTop;
-			},
 		data() {
 			return {
 				scrollTop: 0,
@@ -83,15 +80,15 @@
 			search() {
 				this.isEmpty = false
 				if (this.searchWord != 0) {
-					this.$u.get('http://47.94.151.232:8083/esRecruit/search', {
+					this.$u.post('http://47.94.151.232:8083/esRecruit/search', {
 						keyword: this.searchWord,
 						type: this.current
 					}).then((res) => {
 						console.log(res)
-						this.searchList.list = res.list
-						this.searchList.totalPage = res.totalPage
+						this.searchList.list = res.data.list
+						this.searchList.totalPage = res.data.totalPage
 						this.searchList.pageNum = 1
-						if (res.list.length == 0) {
+						if (res.data.list.length == 0) {
 							this.isEmpty = true
 						}
 					})
@@ -121,14 +118,14 @@
 				if (this.searchList.pageNum != this.searchList.totalPage && this.searchList.isFinsh) {
 					this.searchList.isFinsh = false
 					this.searchList.pageNum++;
-					this.$u.get('http://47.94.151.232:8083/esRecruit/search', {
+					this.$u.post('http://47.94.151.232:8083/esRecruit/search', {
 						keyword: this.searchWord,
 						type: this.current,
 						pageNum: this.searchList.pageNum
 					}).then((res) => {
 						this.searchList.isFinsh = true
-						this.searchList.list = this.searchList.list.concat(res.list)
-						console.log(this.searchList.list)
+						this.searchList.list = this.searchList.list.concat(res.data.list)
+						console.log(this.data.searchList.list)
 						console.log(res)
 
 					})

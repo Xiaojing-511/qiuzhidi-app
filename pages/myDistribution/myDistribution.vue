@@ -118,10 +118,11 @@
 						type: this.current + 1,
 						pageNum: this.interview.pageNum
 					}).then((res) => {
+						console.log(res)
 						this.interview.isFinsh = true;
 						this.interview.pageNum++;
-						this.interview.list = this.interview.list.concat(res.list);
-						this.interview.isLast = res.isLastPage
+						this.interview.list = this.interview.list.concat(res.data.list);
+						this.interview.isLast = res.data.isLastPage
 						console.log(this.interview.list)
 					})
 				}
@@ -131,13 +132,15 @@
 				if (this.recruit.isFinsh) {
 					this.recruit.isFinsh = false;
 					this.$u.get('/interviewer/guidance', {
-						type: this.current + 1,
-						pageNum: this.recruit.pageNum
+						type:this.current+1,
+						pageNum: this.recruit.pageNum,
+						pageSize:5
 					}).then((res) => {
+						console.log(res)
 						this.recruit.isFinsh = true;
 						this.recruit.pageNum++;
-						this.recruit.list = this.recruit.list.concat(res.list);
-						this.recruit.isLast = res.isLastPage
+						this.recruit.list = this.recruit.list.concat(res.data.list);
+						this.recruit.isLast = res.data.isLastPage
 						console.log(res)
 						console.log(this.recruit.list)
 					})

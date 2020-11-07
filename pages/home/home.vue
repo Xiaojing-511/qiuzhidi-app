@@ -3,13 +3,13 @@
 		<view class="white-back">
 			<view class="back-img">
 				<u-search shape="round" :clearabled="false" :animation="false" :show-action="false" height="64" placeholder="JAVA工作"
-							 v-model="searchWord" bg-color='#F2F2F2' @click="goSearch" :disabled="true" ></u-search>
-							<view class="swiper-imgs">
-								<u-swiper :list="imgs" class="inner-imgs" height='300'></u-swiper>
-							</view>
+				 v-model="searchWord" bg-color='#F2F2F2' @click="goSearch" :disabled="true"></u-search>
+				<view class="swiper-imgs">
+					<u-swiper :list="imgs" class="inner-imgs" height='300'></u-swiper>
+				</view>
 			</view>
-			
-					
+
+
 			<view class="dtlbox">
 				<view class="" @click="goInner">
 					<image src="../../static/img/WechatIMG752.png" class="dtl-img"></image>
@@ -213,14 +213,14 @@
 						pageNum: this.innerPageNum
 					}).then((res) => {
 						console.log(res)
-						this.interpolateList = this.interpolateList.concat(res.list);
+						this.interpolateList = this.interpolateList.concat(res.data.list);
 						this.innerIsFinsh = true;
-						this.innerIsLast = res.isLastPage;
+						this.innerIsLast = res.data.isLastPage;
 						this.innerPageNum++;
 
 						console.log(this.interpolateList)
 					}).catch((res) => {
-						this.showList(res.message)
+						
 					})
 				}
 			},
@@ -232,9 +232,9 @@
 						pageNum: this.schoolPageNum
 					}).then((res) => {
 						console.log(res)
-						this.schoolList = this.schoolList.concat(res.list);
+						this.schoolList = this.schoolList.concat(res.data.list);
 						this.schoolIsFinsh = true;
-						this.schoolIsLast = res.isLastPage;
+						this.schoolIsLast = res.data.isLastPage;
 						this.schoolPageNum++;
 						console.log(this.schoolList)
 					})
@@ -248,9 +248,9 @@
 						pageNum: this.socialPageNum
 					}).then((res) => {
 						console.log(res)
-						this.socialList = this.socialList.concat(res.list);
+						this.socialList = this.socialList.concat(res.data.list);
 						this.socialIsFinsh = true;
-						this.socialIsLast = res.isLastPage;
+						this.socialIsLast = res.data.isLastPage;
 						this.socialPageNum++;
 						console.log(this.socialList)
 					})
@@ -258,7 +258,7 @@
 			},
 			getimgs() {
 				this.$u.get('/recruit/rotation').then((res) => {
-					this.imgs = res.map((value) => {
+					this.imgs = res.data.map((value) => {
 						return 'http://118.24.96.51:8085/' + value.url;
 					})
 					console.log(this.imgs)
@@ -285,7 +285,7 @@
 				})
 
 			},
-			goSearch(){
+			goSearch() {
 				console.log('111')
 				uni.navigateTo({
 					url: '../searchDetail/searchDetail'
@@ -337,12 +337,12 @@
 
 
 	.back-img {
-	background-image: url(../../static/img/WechatIMG766.png);
-	margin-left: -30rpx;
-	margin-right: -30rpx;
-	padding: 0 30rpx;
-	background-size:750rpx 360rpx;
-	background-repeat: no-repeat;
+		background-image: url(../../static/img/WechatIMG766.png);
+		margin-left: -30rpx;
+		margin-right: -30rpx;
+		padding: 0 30rpx;
+		background-size: 750rpx 360rpx;
+		background-repeat: no-repeat;
 	}
 
 	.dtl-word {
