@@ -120,15 +120,15 @@
 
 				}).then((res) => {
 					console.log(res);
-					this.nickname = res.nickname;
-					this.icon = res.icon;
-					this.gender = res.gender;
-					this.city = res.city;
-					this.job = res.job;
-					this.personalizedSignature = res.personalizedSignature;
-					this.workExperience = res.workExperience;
-					this.focus = res.focus;
-					this.companyName = res.companyName;
+					this.nickname = res.data.nickname;
+					this.icon = res.data.icon;
+					this.gender = res.data.gender;
+					this.city = res.data.city;
+					this.job = res.data.job;
+					this.personalizedSignature = res.data.personalizedSignature;
+					this.workExperience = res.data.workExperience;
+					this.focus = res.data.focus;
+					this.companyName = res.data.companyName;
 					let a = []
 					a.push({
 						url: 'http://118.24.96.51:8085/' + res.icon
@@ -169,13 +169,13 @@
 				})
 			},
 
-			reload(){
+			reload() {
 				console.log('ss')
 				uni.redirectTo({
-					url:'/pages/interviewer_editor/interviewer_editor',
-				// uni.navigator({
-				
-				// })
+					url: '/pages/interviewer_editor/interviewer_editor',
+					// uni.navigator({
+
+					// })
 				})
 			},
 
