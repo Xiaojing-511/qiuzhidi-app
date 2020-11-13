@@ -4,10 +4,6 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/home/home",
-			"style": {}
-		},
-		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页"
@@ -18,7 +14,12 @@
 			"style": {
 				"navigationBarTitleText": "uView-center"
 			}
-		}, {
+		},{
+			"path": "pages/recuritmentDetails/recuritmentDetails",
+			"style": {
+				"navigationBarTitleText": "招聘详情"
+			}
+		},{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -28,44 +29,9 @@
 			"style": {}
 		},
 		{
-			"path": "pages/my/my",
-			"style": {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "我的"
-			}
-		},
-		{
-			"path": "pages/feedback/feedback",
-			"style": {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "我的反馈"
-			}
-		}, {
-			"path": "pages/search/search",
-			"style": {
-				"navigationBarTextStyle": "black"
-			}
-		}, {
-			"path": "pages/myDistribution/myDistribution",
-			"style": {
-				"navigationBarTitleText": "我的发布",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#FFFFFF"
-			}
-		},
-		{
-			"path": "pages/history-feedback/history-feedback",
-			"style": {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "历史反馈"
-			}
-		},
-		{
 			"path": "pages/fgtPassword/fgtPassword",
 			"style": {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "找回密码",
-				"navigationBarBackgroundColor": "#FFFFFF"
+				"navigationBarTitleText": "忘记密码"
 			}
 		},
 		{
@@ -73,74 +39,13 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		}, {
-			"path": "pages/interpolation/interpolation",
-			"style": {
-				"navigationBarTitleText": "内推",
-				"navigationBarBackgroundColor": "#FFFFFF",
-				"navigationBarTextStyle": "black"
-				// "backgroundColor":"#EEEEEE"
-			}
-
-		}, {
-			"path": "pages/issueInterpolation/issueInterpolation",
-			"style": {
-				"navigationBarTitleText": "发布内推悬赏",
-				"enablePullDownRefresh": false
-			}
-
-		},
-		{
-			"path": "pages/interviewer_editor/interviewer_editor",
-			"style": {
-				"navigationBarTitleText": "面试官编辑",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#FFFFFF"
-			}
-		},
-		{
-			"path": "pages/interviewer_info/interviewer_info",
-			"style": {
-				"navigationBarTitleText": "面试官详情",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#FFFFFF"
-			}
-		},
-		{
-			"path": "pages/pushList/pushList",
-			"style": {
-				"navigationBarTitleText": "内推列表",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/choose/choose",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
 		}
-	    ,{
-            "path" : "pages/searchDetail/searchDetail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/deliver/deliver",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "投递反馈",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "求职帝",
 		"navigationBarBackgroundColor": "#00A8FF",
-		"backgroundColor": "#F8F8F8",
-		"onReachBottomDistance": 50
+		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
 		"color": "#909399",
@@ -152,14 +57,7 @@
 			"iconPath": "static/index.png",
 			"selectedIconPath": "static/index-selected.png",
 			"text": "首页"
-		},
-			{
-				"pagePath": "pages/deliver/deliver",
-				"iconPath": "static/deliver.png",
-				"selectedIconPath": "static/deliver-selected.png",
-				"text": "投递"
-			},
-			{
+		}, {
 			"pagePath": "pages/center/index",
 			"iconPath": "static/center.png",
 			"selectedIconPath": "static/center-selected.png",
@@ -167,36 +65,15 @@
 		}]
 	},
 	"condition": { //模式配置，仅开发期间生效
-		"current": 2, //当前激活的模式（list 的索引项）
+		"current": 0, //当前激活的模式（list 的索引项）
 		"list": [{
-				"name": "login", //模式名称
-				"path": "pages/login/login", //启动页面，必选
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			}, {
-				"name": "switchIdentity", //模式名称
-				"path": "pages/switchIdentity/switchIdentity", //启动页面，必选
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			},
-			{
-				"name": "我的", //模式名称
-				"path": "pages/my/my", //启动页面，必选
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			},
-			{
-				"name": "我的反馈", //模式名称
-				"path": "pages/feedback/feedback", //启动页面，必选
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			},
-			{
-				"name": "历史反馈", //模式名称
-				"path": "pages/history-feedback/history-feedback", //启动页面，必选
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			},
-			{
-				"name": "interpolation",
-				"path": "pages/interpolation/interpolation",
-				"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
-			}
-		]
+			"name": "login", //模式名称
+			"path": "pages/login/login", //启动页面，必选
+			"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+		}, {
+			"name": "switchIdentity", //模式名称
+			"path": "pages/switchIdentity/switchIdentity", //启动页面，必选
+			"query": "interval=4000&autoplay=false" //启动参数，在页面的onLoad函数里面得到。
+		}]
 	}
 }
