@@ -46,6 +46,24 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+		}, {
+			"path": "pages/child/all/all",
+			"style": {
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/child/publish",
+			"style": {
+				"navigationBarTitleText": "我的发布",
+				"navigationBarTextStyle": "black"
+			}
+		}, {
+			"path": "pages/child/ongoing/ongoing",
+			"style": {}
+		}, {
+			"path": "pages/child/closed/closed",
+			"style": {}
 		}
 	],
 	"globalStyle": {
